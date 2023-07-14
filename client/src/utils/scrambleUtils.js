@@ -4,9 +4,8 @@ const getRandomMove = () => MOVES[Math.floor(Math.random() * MOVES.length)];
 export const generateScramble = () => {
   const badMoves = new Set();
 
-  const scramble = Array.from({ length: SCRAMBLE_LENGTH }, (_, index) => {
+  const scramble = Array.from({ length: SCRAMBLE_LENGTH }, () => {
     let move;
-    console.log(...badMoves);
     do {
       move = getRandomMove();
     } while (!updateBadMovesAndGetResult(move, badMoves));

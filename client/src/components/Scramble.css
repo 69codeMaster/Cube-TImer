@@ -5,7 +5,7 @@
   opacity: 1;
   position: absolute;
   transition: all 0.3s ease-in-out;
-  letter-spacing: 0.1rem;
+  letter-spacing: 0.05rem;
 
   transform: translate3d(0, 0, 0);
 
