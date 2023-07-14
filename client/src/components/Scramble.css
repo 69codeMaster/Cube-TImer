@@ -1,0 +1,21 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500&display=swap");
+.scramble-container {
+  font-size: 2.5vw;
+  top: 15vh;
+  opacity: 1;
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  letter-spacing: 0.1rem;
+
+  transform: translate3d(0, 0, 0);
+
+  font-family: "Orbitron", sans-serif;
+  background: linear-gradient(to left, var(--color-accent), var(--accent-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hide {
+  transform: translate3d(-20vw, 0, 0);
+  opacity: 0;
+}
