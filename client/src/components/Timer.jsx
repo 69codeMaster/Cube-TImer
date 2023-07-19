@@ -1,47 +1,52 @@
 import React from "react";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import Confetti from "react-confetti";
 import { useWindowSize } from "@uidotdev/usehooks";
 
 import "./Timer.css";
 import { formatTime } from "../utils/formatTime";
-import { useScramble } from "../store/scrambleContext";
 
 const TIME_TO_START = 500;
 
-function Timer({ running, setRunning }) {
+function Timer({
+  running,
+  setRunning,
+  scramble,
+  handleTimeStopped: updateScramble,
+}) {
+  console.log("Timer rerendered");
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const { width, height } = useWindowSize();
-  const scramble = useScramble();
-
-  let isConfettie = useRef(false);
+  const [isConfettie, setIsConfettie] = useState(false);
   let pressTimeStart, pressTimeEnd; //check how long the space bar was pressed
   let interval;
   let lastStoppedTime = 0;
-  let current_scramble = useRef(scramble);
 
   const handleTimeStopped = async (time) => {
     setReady(false);
     if (time) {
       lastStoppedTime = time;
-      isConfettie.current = lastStoppedTime && lastStoppedTime / 100 < 10;
+      setIsConfettie(lastStoppedTime && lastStoppedTime / 100 < 10);
+      updateScramble();
 
       const url = "http://localhost:5000/solves";
       const data = JSON.stringify({
-        scramble: current_scramble.current,
+        scramble: scramble,
         time: time,
       });
 
-      const response = await fetch(url, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: data,
-      });
-
-      current_scramble.current = scramble;
+      try {
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+        });
+      } catch (error) {
+        console.log(error.message);
+      }
     }
   };
 
@@ -70,7 +75,7 @@ function Timer({ running, setRunning }) {
     window.addEventListener("keyup", handleSpaceUp);
 
     if (running) {
-      isConfettie.current = false;
+      setIsConfettie(false);
       setTime(0);
 
       interval = setInterval(() => {
@@ -83,7 +88,6 @@ function Timer({ running, setRunning }) {
     }
 
     return () => {
-      console.log("returning from the use effect");
       window.removeEventListener("keydown", handleKeyDown);
       window.removeEventListener("keyup", handleSpaceUp);
       clearInterval(interval);
@@ -94,7 +98,7 @@ function Timer({ running, setRunning }) {
     <div
       className={`timer ${ready ? "ready" : ""} ${running ? "running" : ""}`}>
       {formatTime(time || lastStoppedTime)}
-      {Boolean(isConfettie.current) && (
+      {Boolean(isConfettie) && (
         <Confetti numberOfPieces={30} width={width} height={height} />
       )}
     </div>

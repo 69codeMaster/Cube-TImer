@@ -2,17 +2,22 @@ import "./App.css";
 import Timer from "./components/Timer";
 import Scramble from "./components/Scramble";
 import { useState } from "react";
-import { ScramblelProvider } from "./store/scrambleContext";
+import { generateScramble } from "./utils/scrambleUtils";
+
 function App() {
   const [running, setRunning] = useState(false);
+  const [scramble, setScramble] = useState(generateScramble());
 
   return (
-    <ScramblelProvider>
-      <div className="app-container">
-        <Scramble running={running} />
-        <Timer running={running} setRunning={setRunning} />
-      </div>
-    </ScramblelProvider>
+    <div className="app-container">
+      <Scramble running={running} scramble={scramble} />
+      <Timer
+        running={running}
+        setRunning={setRunning}
+        scramble={scramble}
+        handleTimeStopped={() => setScramble(generateScramble())}
+      />
+    </div>
   );
 }
 

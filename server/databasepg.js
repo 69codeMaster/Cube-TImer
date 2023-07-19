@@ -1,4 +1,3 @@
-// import {Client} from 'pg'
 import pg from "pg";
 const { Pool } = pg;
 
@@ -19,6 +18,15 @@ export async function addSolveToDB({ scramble, time }) {
 
 export async function getPB() {}
 
-export async function getAvergaeOf(numberOfSolves) {}
+export async function getAvergaeOf({ numberOfSolves }) {
+  const query = `SELECT AVG(time) AS average_time
+                  FROM (
+                  SELECT time
+                  FROM solves
+                  ORDER BY solve_id DESC
+                  LIMIT $1
+                ) AS last_five_solves;`;
 
-// module.exports = pool;
+  const values = [numberOfSolves];
+  return await pool.query(query, values);
+}
