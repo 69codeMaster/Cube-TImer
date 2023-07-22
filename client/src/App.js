@@ -1,6 +1,7 @@
 import "./App.css";
 import Timer from "./components/Timer";
 import Scramble from "./components/Scramble";
+import Average from "./components/Averages";
 import { useState } from "react";
 import { generateScramble } from "./utils/scrambleUtils";
 
@@ -17,6 +18,8 @@ function App() {
         scramble={scramble}
         handleTimeStopped={() => setScramble(generateScramble())}
       />
+      <Average averageOf={5} scramble={scramble} />
+      <Average averageOf={12} scramble={scramble} />
     </div>
   );
 }

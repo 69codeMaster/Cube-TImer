@@ -18,7 +18,7 @@ export async function addSolveToDB({ scramble, time }) {
 
 export async function getPB() {}
 
-export async function getAvergaeOf({ numberOfSolves }) {
+export async function getAvergaeOf(numberOfSolves) {
   const query = `SELECT AVG(time) AS average_time
                   FROM (
                   SELECT time
@@ -28,5 +28,5 @@ export async function getAvergaeOf({ numberOfSolves }) {
                 ) AS last_five_solves;`;
 
   const values = [numberOfSolves];
-  return await pool.query(query, values);
+  return await pool.query(quersy, values);
 }

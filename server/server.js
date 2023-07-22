@@ -19,9 +19,9 @@ app.post("/solves", async (req, res) => {
   }
 });
 
-app.get("/averageOf", async (req, res) => {
+app.get("/averageOf:num", async (req, res) => {
   try {
-    const result = await getAvergaeOf(req.body);
+    const result = await getAvergaeOf(req.params.num.split(":")[1]);
     res.status(201).json(result.rows[0]);
   } catch (err) {
     res.status(500).json({ error: err.message });

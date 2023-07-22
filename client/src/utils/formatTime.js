@@ -5,3 +5,13 @@ export const formatTime = (timeValue) => {
 
   return `${minutes}:${seconds}.${milliseconds}`;
 };
+
+export const formatAverage = (average) => {
+  average = String(average).split(".")[0];
+
+  return (
+    average.substring(0, average.length / 2) +
+    "." +
+    average.substring(average.length / 2, average.length / 2 + 2)
+  );
+};

@@ -14,7 +14,6 @@ function Timer({
   scramble,
   handleTimeStopped: updateScramble,
 }) {
-  
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const { width, height } = useWindowSize();
@@ -28,25 +27,8 @@ function Timer({
     if (time) {
       lastStoppedTime = time;
       setIsConfettie(lastStoppedTime && lastStoppedTime / 100 < 10);
+      addSolveToDB(scramble, time);
       updateScramble();
-
-      const url = "http://localhost:5000/solves";
-      const data = JSON.stringify({
-        scramble: scramble,
-        time: time,
-      });
-
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: data,
-        });
-      } catch (error) {
-        console.log(error.message);
-      }
     }
   };
 
@@ -93,6 +75,25 @@ function Timer({
       clearInterval(interval);
     };
   }, [running]);
+
+  const addSolveToDB = async (scramble) => {
+    const data = JSON.stringify({
+      scramble: scramble,
+      time: time,
+    });
+
+    try {
+      const response = await fetch("/solves", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   return (
     <div
