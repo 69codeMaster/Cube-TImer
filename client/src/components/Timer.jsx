@@ -14,7 +14,7 @@ function Timer({
   scramble,
   handleTimeStopped: updateScramble,
 }) {
-  console.log("Timer rerendered");
+  
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const { width, height } = useWindowSize();

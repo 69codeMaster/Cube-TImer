@@ -29,7 +29,4 @@ app.get("/averageOf", async (req, res) => {
   }
 });
 
-//add solve
-// app.get("/solves", (_, res) => res.json("use the fucking post"));
-
 app.listen(5000, () => console.log("server strated at port 5000"));
