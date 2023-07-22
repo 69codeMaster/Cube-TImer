@@ -18,8 +18,8 @@ function App() {
         scramble={scramble}
         handleTimeStopped={() => setScramble(generateScramble())}
       />
-      <Average averageOf={5} scramble={scramble} />
-      <Average averageOf={12} scramble={scramble} />
+      <Average averageOf={5} scramble={scramble} running={running} />
+      <Average averageOf={12} scramble={scramble} running={running} />
     </div>
   );
 }

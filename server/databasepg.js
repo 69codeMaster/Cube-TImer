@@ -25,8 +25,19 @@ export async function getAvergaeOf(numberOfSolves) {
                   FROM solves
                   ORDER BY solve_id DESC
                   LIMIT $1
-                ) AS last_five_solves;`;
+                ) AS last_$1_solves;`;
+
+  const query2 = `SELECT time
+                  FROM solves
+                  ORDER BY solve_id DESC
+                  LIMIT $1;`;
 
   const values = [numberOfSolves];
-  return await pool.query(quersy, values);
+  let average = 0;
+
+  let times = await pool.query(query2, values);
+  for (const { time } of times.rows) {
+    average += Number(time);
+  }
+  return average / numberOfSolves;
 }
