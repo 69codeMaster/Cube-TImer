@@ -19,3 +19,4 @@ export const MOVES = [
   "B'",
   "B2",
 ];
+export const TIME_TO_START = 500;

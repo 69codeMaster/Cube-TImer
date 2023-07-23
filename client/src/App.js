@@ -7,19 +7,14 @@ import { generateScramble } from "./utils/scrambleUtils";
 
 function App() {
   const [running, setRunning] = useState(false);
-  const [scramble, setScramble] = useState(generateScramble());
+  let scramble = generateScramble();
 
   return (
     <div className="app-container">
-      <Scramble running={running} scramble={scramble} />
-      <Timer
-        running={running}
-        setRunning={setRunning}
-        scramble={scramble}
-        handleTimeStopped={() => setScramble(generateScramble())}
-      />
-      <Average averageOf={5} scramble={scramble} running={running} />
-      <Average averageOf={12} scramble={scramble} running={running} />
+      <Scramble show={!running} scramble={scramble} />
+      <Timer running={running} setRunning={setRunning} scramble={scramble} />
+      <Average averageOf={5} running={running} />
+      <Average averageOf={12} running={running} />
     </div>
   );
 }

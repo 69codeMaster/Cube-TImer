@@ -1,4 +1,4 @@
-import { MOVES, SCRAMBLE_LENGTH } from "../data/scrambleData";
+import { MOVES, SCRAMBLE_LENGTH } from "../constants/scrambleData";
 const getRandomMove = () => MOVES[Math.floor(Math.random() * MOVES.length)];
 
 export const generateScramble = () => {

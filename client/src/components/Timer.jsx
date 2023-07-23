@@ -1,62 +1,49 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import Confetti from "react-confetti";
-import { useWindowSize } from "@uidotdev/usehooks";
-
 import "./Timer.css";
-import { formatTime } from "../utils/formatTime";
 
-const TIME_TO_START = 500;
+import { formatTime } from "../utils/formatUtils";
+import CustomConfetti from "./CustomConfetti";
+import { insertSolveAPI } from "../utils/apiUtils";
+import { TIME_TO_START } from "../constants/scrambleData";
 
-function Timer({
-  running,
-  setRunning,
-  scramble,
-  handleTimeStopped: updateScramble,
-}) {
+function Timer({ running, setRunning, scramble }) {
+  console.log("timer rerendered");
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
-  const { width, height } = useWindowSize();
   const [isConfettie, setIsConfettie] = useState(false);
-  let pressTimeStart, pressTimeEnd; //check how long the space bar was pressed
-  let interval;
-  let lastStoppedTime = 0;
 
-  const handleTimeStopped = async (time) => {
-    setReady(false);
-    if (time) {
-      lastStoppedTime = time;
-      setIsConfettie(lastStoppedTime && lastStoppedTime / 100 < 10);
-      addSolveToDB(scramble, time);
-      updateScramble();
-    }
+  let pressTimeStart = 0,
+    pressTimeEnd = 0,
+    interval;
+
+  const handleTimeStopped = async (stopped_time) => {
+    if (!stopped_time) return;
+    setIsConfettie(stopped_time / 100 < 10);
+    await insertSolveAPI(scramble, stopped_time);
   };
 
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.code === "Space") {
-        pressTimeEnd = Date.now();
-        if (pressTimeEnd - pressTimeStart > TIME_TO_START) {
-          setTime(0);
-          setReady(true);
-        }
-        if (e.repeat) return;
-        pressTimeStart = Date.now();
-      }
+    const handleKeyDown = ({ code, repeat }) => {
+      if (code !== "Space") return;
+      pressTimeEnd = Date.now();
+      setReady(pressTimeStart && pressTimeEnd - pressTimeStart > TIME_TO_START); //ready to start running
+      if (repeat) return;
+      pressTimeStart = Date.now();
     };
 
-    const handleSpaceUp = (e) => {
-      if (e.code === "Space") {
-        if (running || Date.now() - pressTimeStart > TIME_TO_START + 10)
-          setRunning((ran) => !ran);
-        else pressTimeStart = Date.now();
-      }
+    const handleSpaceUp = ({ code }) => {
+      if (code !== "Space") return;
+      if (running || Date.now() - pressTimeStart > TIME_TO_START)
+        setRunning((ran) => !ran);
+      else pressTimeStart = Date.now();
     };
 
     window.addEventListener("keydown", handleKeyDown);
     window.addEventListener("keyup", handleSpaceUp);
 
     if (running) {
+      //when the clock starts running hide any
       setIsConfettie(false);
       setTime(0);
 
@@ -65,9 +52,7 @@ function Timer({
           return prevTime + 1;
         });
       }, 10);
-    } else {
-      handleTimeStopped(time);
-    }
+    } else handleTimeStopped(time);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
@@ -76,32 +61,11 @@ function Timer({
     };
   }, [running]);
 
-  const addSolveToDB = async (scramble) => {
-    const data = JSON.stringify({
-      scramble: scramble,
-      time: time,
-    });
-
-    try {
-      const response = await fetch("/solves", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: data,
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-
   return (
     <div
       className={`timer ${ready ? "ready" : ""} ${running ? "running" : ""}`}>
-      {formatTime(time || lastStoppedTime)}
-      {Boolean(isConfettie) && (
-        <Confetti numberOfPieces={30} width={width} height={height} />
-      )}
+      {formatTime(time)}
+      {isConfettie === true && <CustomConfetti />}
     </div>
   );
 }

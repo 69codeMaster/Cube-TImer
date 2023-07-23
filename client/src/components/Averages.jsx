@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
-import { formatAverage } from "../utils/formatTime";
+import { formatAverage } from "../utils/formatUtils";
 import "./Average.css";
-export default function Average({ averageOf, scramble, running }) {
+
+export default function Average({ averageOf, running }) {
   console.log("the average got rerendered");
   useEffect(() => {
-    fetchAverage();
-  }, [scramble]);
+    console.log("fetching average");
+    if (!running) fetchAverage();
+  }, [running]);
 
   const fetchAverage = async () => {
     const data = await fetch(`./averageOf:${averageOf}`);
