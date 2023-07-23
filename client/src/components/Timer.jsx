@@ -8,7 +8,7 @@ import { insertSolveAPI } from "../utils/apiUtils";
 import { TIME_TO_START } from "../constants/scrambleData";
 
 function Timer({ running, setRunning, scramble }) {
-  console.log("timer rerendered");
+  // console.log("timer rerendered");
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const [isConfettie, setIsConfettie] = useState(false);
