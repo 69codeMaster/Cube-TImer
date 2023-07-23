@@ -21,6 +21,7 @@ function Timer({ running, setRunning, scramble }) {
     if (!stopped_time) return;
     setIsConfettie(stopped_time / 100 < 10);
     await insertSolveAPI(scramble, stopped_time);
+    console.log("insert to db");
   };
 
   useEffect(() => {
