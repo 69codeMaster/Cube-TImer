@@ -1,6 +1,6 @@
 import express from "express";
 import cors from "cors";
-import { addSolveToDB, getAvergaeOf } from "./databasepg.js";
+import { addSolveToDB, getAvergaeOf, getBestSolve } from "./databasepg.js";
 
 const app = express();
 
@@ -29,4 +29,13 @@ app.get("/averageOf:num", async (req, res) => {
   }
 });
 
+app.get("/bestSolve", async (req, res) => {
+  try {
+    const result = await getBestSolve();
+    res.status(201).json(result);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+    console.error(err.message);
+  }
+});
 app.listen(5000, () => console.log("server strated at port 5000"));

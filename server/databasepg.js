@@ -16,28 +16,30 @@ export async function addSolveToDB({ scramble, time }) {
   return await pool.query(query, values);
 }
 
-export async function getPB() {}
+export async function getBestSolve() {
+  const query = `SELECT *
+                 FROM solves
+                 ORDER BY time ASC
+                 LIMIT 1;`;
+
+  const query_returned_value = await pool.query(query);
+
+  return query_returned_value.rows[0];
+}
 
 export async function getAvergaeOf(numberOfSolves) {
-  const query = `SELECT time
-                  FROM solves
-                  ORDER BY solve_id DESC
-                  LIMIT $1;`;
+  const query = `SELECT count(solve_id) AS num_of_rows, (SUM(time) - MIN(time) - MAX(time)) AS average
+                  FROM (SELECT time, solve_id
+                        FROM solves
+                        order by solve_id desc
+                        limit $1
+                        ) as avg_table;`;
 
   const values = [numberOfSolves];
-  let average = 0;
 
-  let times = await pool.query(query, values);
-  let min = Infinity,
-    max = 0;
+  const query_returned_value = await pool.query(query, values);
 
-  for (let { time } of times.rows) {
-    time = Number(time);
-    if (Number(time) > max) max = time;
-    if (Number(time) < min) min = time;
-    average += time;
-  }
+  if (+query_returned_value.rows[0].num_of_rows < numberOfSolves) return "Nan";
 
-  average -= min + max;
-  return average / (numberOfSolves - 2);
+  return +query_returned_value.rows[0].average / (numberOfSolves - 2);
 }

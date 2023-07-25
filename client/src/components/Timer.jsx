@@ -18,10 +18,8 @@ function Timer({ running, setRunning, scramble }) {
     interval;
 
   const handleTimeStopped = async (stopped_time) => {
-    if (!stopped_time) return;
-    setIsConfettie(stopped_time / 100 < 10);
     await insertSolveAPI(scramble, stopped_time);
-    console.log("insert to db");
+    setIsConfettie(stopped_time / 100 < 10);
   };
 
   useEffect(() => {
@@ -30,6 +28,7 @@ function Timer({ running, setRunning, scramble }) {
       pressTimeEnd = Date.now();
       setReady(pressTimeStart && pressTimeEnd - pressTimeStart > TIME_TO_START); //ready to start running
       if (repeat) return;
+      //first press
       pressTimeStart = Date.now();
     };
 
@@ -44,7 +43,6 @@ function Timer({ running, setRunning, scramble }) {
     window.addEventListener("keyup", handleSpaceUp);
 
     if (running) {
-      //when the clock starts running hide any
       setIsConfettie(false);
       setTime(0);
 
@@ -53,7 +51,7 @@ function Timer({ running, setRunning, scramble }) {
           return prevTime + 1;
         });
       }, 10);
-    } else handleTimeStopped(time);
+    } else if (time) handleTimeStopped(time);
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
