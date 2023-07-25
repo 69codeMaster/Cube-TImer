@@ -1,11 +1,11 @@
-export const insertSolveAPI = async (scramble, time) => {
+export const insertSolveAPI = async (scramble, time, setDbUpdated) => {
   const data = JSON.stringify({
     scramble: scramble,
     time: time,
   });
 
   try {
-    const response = await fetch("/solves", {
+    await fetch("/solves", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -14,6 +14,7 @@ export const insertSolveAPI = async (scramble, time) => {
     });
 
     console.log("solve inserted to db");
+    setDbUpdated(true);
   } catch (error) {
     console.log(error.message);
   }

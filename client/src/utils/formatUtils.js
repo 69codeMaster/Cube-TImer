@@ -8,7 +8,6 @@ export const formatTime = (timeValue) => {
 
 export const formatAverage = (average) => {
   average = String(average).split(".")[0];
-
   return (
     average.substring(0, average.length / 2) +
     "." +

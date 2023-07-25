@@ -7,19 +7,23 @@ import CustomConfetti from "./CustomConfetti";
 import { insertSolveAPI } from "../utils/apiUtils";
 import { TIME_TO_START } from "../constants/scrambleData";
 
-function Timer({ running, setRunning, scramble }) {
-  // console.log("timer rerendered");
+import { useScrambleRunningContext } from "../store/scrambleRunningContext";
+
+function Timer({ setDbUpdated }) {
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const [isConfetti, setIsConfetti] = useState(false);
+  const { scramble, running, setRunning, setScramble } =
+    useScrambleRunningContext();
 
   let pressTimeStart = 0,
     pressTimeEnd = 0,
     interval;
 
-  const handleTimeStopped = async (stopped_time) => {
-    await insertSolveAPI(scramble, stopped_time);
-    setIsConfetti(stopped_time / 100 < 10);
+  const handleTimeStopped = async () => {
+    await insertSolveAPI(scramble, time, setDbUpdated);
+    setScramble();
+    setIsConfetti(time / 100 < 10);
   };
 
   useEffect(() => {
@@ -51,7 +55,7 @@ function Timer({ running, setRunning, scramble }) {
           return prevTime + 1;
         });
       }, 10);
-    } else if (time) handleTimeStopped(time);
+    } else if (time) handleTimeStopped();
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
