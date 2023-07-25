@@ -11,7 +11,7 @@ function Timer({ running, setRunning, scramble }) {
   // console.log("timer rerendered");
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
-  const [isConfettie, setIsConfettie] = useState(false);
+  const [isConfetti, setIsConfetti] = useState(false);
 
   let pressTimeStart = 0,
     pressTimeEnd = 0,
@@ -19,7 +19,7 @@ function Timer({ running, setRunning, scramble }) {
 
   const handleTimeStopped = async (stopped_time) => {
     await insertSolveAPI(scramble, stopped_time);
-    setIsConfettie(stopped_time / 100 < 10);
+    setIsConfetti(stopped_time / 100 < 10);
   };
 
   useEffect(() => {
@@ -43,11 +43,11 @@ function Timer({ running, setRunning, scramble }) {
     window.addEventListener("keyup", handleSpaceUp);
 
     if (running) {
-      setIsConfettie(false);
+      setIsConfetti(false);
       setTime(0);
 
       interval = setInterval(() => {
-        setTime(function (prevTime) {
+        setTime((prevTime) => {
           return prevTime + 1;
         });
       }, 10);
@@ -64,7 +64,7 @@ function Timer({ running, setRunning, scramble }) {
     <div
       className={`timer ${ready ? "ready" : ""} ${running ? "running" : ""}`}>
       {formatTime(time)}
-      {isConfettie === true && <CustomConfetti />}
+      {isConfetti === true && <CustomConfetti />}
     </div>
   );
 }

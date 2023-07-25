@@ -2,16 +2,20 @@ import "./App.css";
 import Timer from "./components/Timer";
 import Scramble from "./components/Scramble";
 import Average from "./components/Average";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { generateScramble } from "./utils/scrambleUtils";
 
-/* 
- !! fetching the average happens before the new solve is inserted to the DB
- !! the fetch should happend after that
- */
+import { RunningProvider } from "./store/runningContext";
+import { ScrambleProvider } from "./store/scrambleContext";
+
 function App() {
+  console.log("app re-rendered");
   const [running, setRunning] = useState(false);
-  const scramble = generateScramble();
+  const [scramble, setScramble] = useState("");
+
+  useEffect(() => {
+    if (!running) setScramble(generateScramble());
+  }, [running]);
 
   return (
     <div className="app-container">

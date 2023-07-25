@@ -6,7 +6,7 @@ import "./Average.css";
 export default function Average({ averageOf, running }) {
   useEffect(() => {
     if (!running) {
-      fetchAverage(averageOf, setAverage);
+      fetchAverage(averageOf).then((avergae) => setAverage(avergae));
     }
   }, [running]);
   const [average, setAverage] = useState(0);

@@ -19,9 +19,9 @@ export const insertSolveAPI = async (scramble, time) => {
   }
 };
 
-export const fetchAverage = async (averageOf, setAverage) => {
+export const fetchAverage = async (averageOf) => {
   const data = await fetch(`./averageOf:${averageOf}`);
   const average = await data.json();
   console.log("fecthed average");
-  setAverage(average);
+  return average;
 };
