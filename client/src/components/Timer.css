@@ -5,6 +5,9 @@
   --primary-500: #379683;
   --primary-300: #8ee4af;
   --primary-200: #edf5e1;
+
+  --width-on-run: 68vw;
+  --font-on-run: 12vw;
 }
 
 .timer {
@@ -18,13 +21,14 @@
 }
 
 .ready {
-  font-size: 10vw;
-  width: 54vw;
+  font-size: var(--font-on-run);
+  width: var(--width-on-run);
   text-align: center;
 }
 
 .running {
-  font-size: 10vw;
-  width: 54vw;
+  font-size: var(--font-on-run);
+  width: var(--width-on-run);
+  transform: translateX(0.14ch);
   text-align: unset;
 }

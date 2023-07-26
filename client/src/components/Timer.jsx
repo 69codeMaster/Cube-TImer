@@ -30,7 +30,11 @@ function Timer({ setDbUpdated }) {
     const handleKeyDown = ({ code, repeat }) => {
       if (code !== "Space") return;
       pressTimeEnd = Date.now();
-      setReady(pressTimeStart && pressTimeEnd - pressTimeStart > TIME_TO_START); //ready to start running
+
+      if (pressTimeStart && pressTimeEnd - pressTimeStart > TIME_TO_START) {
+        setReady(true);
+        setTime(0);
+      } else setReady(false); //ready to start running
       if (repeat) return;
       //first press
       pressTimeStart = Date.now();
