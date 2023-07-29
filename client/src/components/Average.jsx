@@ -1,14 +1,17 @@
 import { useState, useEffect, useRef } from "react";
-
 import { formatAverage } from "../utils/formatUtils";
 import { fetchAverage } from "../utils/apiUtils";
-import { useScrambleRunningContext } from "../store/scrambleRunningContext";
 import "./Average.css";
 
-export default function Average({ averageOf, dbUpdated, setDbUpdated }) {
+export default function Average({
+  averageOf,
+  dbUpdated,
+  setDbUpdated,
+  running,
+}) {
   console.log("average got rendered");
   const [average, setAverage] = useState(0);
-  const { running } = useScrambleRunningContext();
+  
   useEffect(() => {
     if (dbUpdated) {
       setDbUpdated(false);

@@ -2,29 +2,29 @@ import "./App.css";
 import Timer from "./components/Timer";
 import Scramble from "./components/Scramble";
 import Average from "./components/Average";
-import ScrambleRunningProvider from "./store/scrambleRunningContext";
+import ScrambleProvider from "./store/ScrambleContext";
 import { useState } from "react";
 
 function App() {
   const [dbUpdated, setDbUpdated] = useState(true);
+  const [running, setRunning] = useState(false);
   return (
-    <ScrambleRunningProvider>
-      <div className="app-container">
-        <Scramble />
-        <Timer setDbUpdated={setDbUpdated} />
-
-        <Average
-          averageOf={5}
-          dbUpdated={dbUpdated}
+    <div className="app-container">
+      <ScrambleProvider>
+        <Scramble running={running} />
+        <Timer
           setDbUpdated={setDbUpdated}
+          running={running}
+          setRunning={setRunning}
         />
-        {/* <Average
-          averageOf={12}
-          dbUpdated={dbUpdated}
-          setDbUpdated={setDbUpdated}
-        /> */}
-      </div>
-    </ScrambleRunningProvider>
+      </ScrambleProvider>
+      <Average
+        averageOf={5}
+        dbUpdated={dbUpdated}
+        setDbUpdated={setDbUpdated}
+        running={running}
+      />
+    </div>
   );
 }
 

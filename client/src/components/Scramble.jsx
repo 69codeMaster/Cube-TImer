@@ -1,8 +1,8 @@
 import "./Scramble.css";
-import { useScrambleRunningContext } from "../store/scrambleRunningContext";
+import { useScramble } from "../store/ScrambleContext";
 
-export default function Scramble() {
-  const { running, scramble } = useScrambleRunningContext();
+export default function Scramble({ running }) {
+  const { scramble } = useScramble();
   return (
     <div className={`scramble-container ${running ? "hide" : ""}`}>
       {scramble}

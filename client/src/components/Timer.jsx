@@ -7,14 +7,13 @@ import CustomConfetti from "./CustomConfetti";
 import { insertSolveAPI } from "../utils/apiUtils";
 import { TIME_TO_START } from "../constants/scrambleData";
 
-import { useScrambleRunningContext } from "../store/scrambleRunningContext";
+import { useScramble } from "../store/ScrambleContext";
 
-function Timer({ setDbUpdated }) {
+function Timer({ setDbUpdated, running, setRunning }) {
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const [isConfetti, setIsConfetti] = useState(false);
-  const { scramble, running, setRunning, setScramble } =
-    useScrambleRunningContext();
+  const { scramble, setScramble } = useScramble();
 
   let pressTimeStart = 0,
     pressTimeEnd = 0,
