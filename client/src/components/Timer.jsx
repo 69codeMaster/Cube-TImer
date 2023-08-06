@@ -4,7 +4,7 @@ import "./Timer.css";
 
 import { formatTime } from "../utils/formatUtils";
 import CustomConfetti from "./CustomConfetti";
-import { insertSolveAPI } from "../utils/apiUtils";
+import { insertSolve } from "../utils/apiUtils";
 import { TIME_TO_START } from "../constants/scrambleData";
 
 import { useScramble } from "../store/ScrambleContext";
@@ -20,7 +20,7 @@ function Timer({ setDbUpdated, running, setRunning }) {
     interval;
 
   const handleTimeStopped = async () => {
-    await insertSolveAPI(scramble, time, setDbUpdated);
+    await insertSolve(scramble, time, () => setDbUpdated(true));
     setScramble();
     setIsConfetti(time / 100 < 10);
   };

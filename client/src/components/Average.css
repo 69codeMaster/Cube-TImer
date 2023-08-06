@@ -1,15 +1,13 @@
 .average {
   font-size: 2.5vw;
-  top: 15vh;
   opacity: 1;
-  transition: all 1s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
   letter-spacing: 0.05rem;
   background: linear-gradient(to left, var(--color-accent), var(--accent-300));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.hide {
-  transform: translateX(-20vw);
+.hide-average {
   opacity: 0;
 }
