@@ -8,19 +8,24 @@ import { insertSolve } from "../utils/apiUtils";
 import { TIME_TO_START } from "../constants/scrambleData";
 
 import { useScramble } from "../store/ScrambleContext";
+import { useDB } from "../store/DbContext";
 
 function Timer({ setDbUpdated, running, setRunning }) {
   const [time, setTime] = useState(0);
   const [ready, setReady] = useState(false);
   const [isConfetti, setIsConfetti] = useState(false);
   const { scramble, setScramble } = useScramble();
+  const { setSolves } = useDB();
 
   let pressTimeStart = 0,
     pressTimeEnd = 0,
     interval;
 
   const handleTimeStopped = async () => {
-    await insertSolve(scramble, time, () => setDbUpdated(true));
+    await insertSolve(scramble, time, () => {
+      setDbUpdated(true);
+    });
+    setSolves((prevSolves) => [...prevSolves, time]);
     setScramble();
     setIsConfetti(time / 100 < 10);
   };

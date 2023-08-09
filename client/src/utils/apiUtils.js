@@ -13,7 +13,6 @@ export const insertSolve = async (scramble, time, update) => {
       body: data,
     });
 
-    console.log("solve inserted to db");
     update();
   } catch (error) {
     console.log(error.message);

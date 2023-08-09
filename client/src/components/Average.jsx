@@ -10,25 +10,26 @@ export default function Average({
   running,
 }) {
   console.log("average got rendered");
-  // const { averages } = useDB();
+  const { averages } = useDB();
+  console.log(averages);
   const [average, setAverage] = useState();
 
   useEffect(() => {
     if (dbUpdated) {
-      setDbUpdated(false);
-
       fetchAverage(averageOf).then((res) => {
         console.log(res);
         setAverage(res);
       });
 
-      // setAverage(Math.random() * 1000);
+      setDbUpdated(false);
     }
   }, [dbUpdated]);
 
   return (
     <div className={`average ${running && average ? "hide-average" : ""}`}>
-      average of {averageOf} : {formatAverage(average)}
+      db average of {averageOf} : {formatAverage(average)}
+      <br></br>
+      local average of {averageOf} : {formatAverage(averages[averageOf])}
     </div>
   );
 }
