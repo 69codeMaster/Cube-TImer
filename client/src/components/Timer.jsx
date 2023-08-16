@@ -22,9 +22,7 @@ function Timer({ setDbUpdated, running, setRunning }) {
     interval;
 
   const handleTimeStopped = async () => {
-    await insertSolve(scramble, time, () => {
-      setDbUpdated(true);
-    });
+    await insertSolve(scramble, time);
     setSolves((prevSolves) => [...prevSolves, time]);
     setScramble();
     setIsConfetti(time / 100 < 10);

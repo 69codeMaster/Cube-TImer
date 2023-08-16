@@ -1,4 +1,4 @@
-export const insertSolve = async (scramble, time, update) => {
+export const insertSolve = async (scramble, time) => {
   const data = JSON.stringify({
     scramble: scramble,
     time: time,
@@ -12,8 +12,6 @@ export const insertSolve = async (scramble, time, update) => {
       },
       body: data,
     });
-
-    update();
   } catch (error) {
     console.log(error.message);
   }

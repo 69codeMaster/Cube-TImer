@@ -36,12 +36,12 @@ export async function getBestSolve() {
                  LIMIT 1;`;
 
   const result = await pool.query(query);
-
-  return result.rows[0];
+  if (!result) return "Nan";
+  return result.rows[0] ?? [];
 }
 
 export async function getAvergaeOf(numberOfSolves) {
-  const query = `SELECT count(solve_id) AS num_of_rows, (SUM(time) - MIN(time) - MAX(time)) AS average
+  const query = `SELECT count(*) AS num_of_rows, (SUM(time) - MIN(time) - MAX(time)) AS average
                   FROM (SELECT time, solve_id
                         FROM solves
                         order by solve_id desc

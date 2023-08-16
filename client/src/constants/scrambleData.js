@@ -1,4 +1,4 @@
-export const SCRAMBLE_LENGTH = 21;
+export const SCRAMBLE_LENGTH = 25;
 export const MOVES = [
   "U",
   "U'",

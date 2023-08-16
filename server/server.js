@@ -24,6 +24,7 @@ app.post("/insertSolve", async (req, res) => {
   }
 });
 
+// no longer in use
 app.get("/averageOf:num", async (req, res) => {
   try {
     const result = await getAvergaeOf(req.params.num.split(":")[1]);
@@ -37,6 +38,7 @@ app.get("/averageOf:num", async (req, res) => {
 app.get("/bestSolve", async (req, res) => {
   try {
     const result = await getBestSolve();
+
     res.status(201).json(result);
   } catch (err) {
     res.status(500).json({ error: err.message });
