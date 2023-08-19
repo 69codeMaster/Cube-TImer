@@ -14,7 +14,8 @@ export default function Average({
       className={`average ${
         running && averages[averageOf] ? "hide-average" : ""
       }`}>
-      average of {averageOf} : {formatAverage(averages[averageOf])}
+      average of <span className="averageOf"> {averageOf} </span>:{" "}
+      {formatAverage(averages[averageOf])}
     </div>
   );
 }
