@@ -15,8 +15,10 @@ function App() {
           <Scramble running={running} />
           <Timer running={running} setRunning={setRunning} />
         </ScrambleProvider>
-        <Average averageOf={5} running={running} />
-        <Average averageOf={12} running={running} />
+        <div className="averages-container">
+          <Average averageOf={5} running={running} />
+          <Average averageOf={12} running={running} />
+        </div>
       </div>
     </DbProvider>
   );
