@@ -5,6 +5,6 @@ export const getAverage = (averageOf, solves) => {
     .sort((a, b) => (a > b ? 1 : -1))
     .slice(1, -1);
   console.log(lastNSolves);
-  const sum = lastNSolves.reduce((avg, curr) => avg + Number(curr), 0);
+  const sum = lastNSolves.reduce((avg, curr) => avg + +curr, 0);
   return sum / lastNSolves.length;
 };
