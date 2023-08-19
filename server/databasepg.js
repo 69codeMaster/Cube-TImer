@@ -30,7 +30,7 @@ function addSolveToDB({ scramble, time }) {
     });
 }
 exports.addSolveToDB = addSolveToDB;
-function getSolves(numberOfSolves = 100) {
+function getSolves(numberOfSolves = 15) {
     return __awaiter(this, void 0, void 0, function* () {
         const query = ` SELECT time
                   FROM solves
