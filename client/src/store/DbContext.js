@@ -24,9 +24,7 @@ export default function DbProvider({ children }) {
   const [best, setBest] = useState();
 
   useEffect(() => {
-    fetchSolves(100).then((res) =>
-      setSolves(res.map((solve) => Number(solve)))
-    );
+    fetchSolves(15).then((res) => setSolves(res.map((solve) => Number(solve))));
     fetchBest().then((res) => setBest(Number(res)));
   }, []);
 

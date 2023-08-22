@@ -24,7 +24,7 @@ const pool = new Pool({
 });
 function addSolveToDB({ scramble, time }) {
     return __awaiter(this, void 0, void 0, function* () {
-        const query = 'INSERT INTO solves(scramble, "time", date) VALUES ($1, $2,CURRENT_DATE) RETURNING *';
+        const query = 'INSERT INTO main_schema.solves(scramble, "time", date) VALUES ($1, $2,CURRENT_DATE) RETURNING *';
         const values = [scramble, time];
         return yield pool.query(query, values);
     });
@@ -33,7 +33,7 @@ exports.addSolveToDB = addSolveToDB;
 function getSolves(numberOfSolves = 15) {
     return __awaiter(this, void 0, void 0, function* () {
         const query = ` SELECT time
-                  FROM solves
+                  FROM main_schema.solves
                   ORDER BY solve_id
                   LIMIT $1`;
         const values = [numberOfSolves];
@@ -46,7 +46,7 @@ function getBestSolve() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         const query = `SELECT *
-                 FROM solves
+                 FROM main_schema.solves
                  ORDER BY time ASC
                  LIMIT 1;`;
         const result = yield pool.query(query);
@@ -60,7 +60,7 @@ function getAvergaeOf(numberOfSolves) {
     return __awaiter(this, void 0, void 0, function* () {
         const query = `SELECT count(*) AS num_of_rows, (SUM(time) - MIN(time) - MAX(time)) AS average
                   FROM (SELECT time, solve_id
-                        FROM solves
+                        FROM main_schema.solves
                         order by solve_id desc
                         LIMIT $1
                         ) as avg_table;`;

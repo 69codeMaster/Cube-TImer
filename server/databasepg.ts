@@ -12,14 +12,15 @@ const pool = new Pool({
 
 export async function addSolveToDB({ scramble, time }: SolveProps) {
   const query =
-    'INSERT INTO solves(scramble, "time", date) VALUES ($1, $2,CURRENT_DATE) RETURNING *';
+    'INSERT INTO main_schema.solves(scramble, "time", date) VALUES ($1, $2,CURRENT_DATE) RETURNING *';
   const values = [scramble, time];
   return await pool.query(query, values);
 }
 
 export async function getSolves(numberOfSolves: number = 15) {
+  
   const query = ` SELECT time
-                  FROM solves
+                  FROM main_schema.solves
                   ORDER BY solve_id
                   LIMIT $1`;
 
@@ -32,7 +33,7 @@ export async function getSolves(numberOfSolves: number = 15) {
 
 export async function getBestSolve(): Promise<number | "Nan"> {
   const query = `SELECT *
-                 FROM solves
+                 FROM main_schema.solves
                  ORDER BY time ASC
                  LIMIT 1;`;
 
@@ -46,7 +47,7 @@ export async function getAvergaeOf(
 ): Promise<number | "Nan"> {
   const query = `SELECT count(*) AS num_of_rows, (SUM(time) - MIN(time) - MAX(time)) AS average
                   FROM (SELECT time, solve_id
-                        FROM solves
+                        FROM main_schema.solves
                         order by solve_id desc
                         LIMIT $1
                         ) as avg_table;`;

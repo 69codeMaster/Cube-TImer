@@ -1,6 +1,7 @@
 * {
   padding: 0px;
   margin: 0px;
+  box-sizing: content-box;
 }
 
 :root {
@@ -14,7 +15,7 @@
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-rows: 40vh 10vh 25vh;
+  grid-template-rows: 40vh 4ch 25vh;
   background: linear-gradient(
     to bottom,
     var(--color-primary),

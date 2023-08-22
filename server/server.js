@@ -33,7 +33,7 @@ app.post("/insertSolve", (req, res) => __awaiter(void 0, void 0, void 0, functio
 // no longer in use
 app.get("/averageOf:num", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield (0, databasepg_js_1.getAvergaeOf)(+req.params.num.split(":")[1]);
+        const result = yield (0, databasepg_js_1.getAvergaeOf)(req.params.num);
         res.status(201).json(result);
     }
     catch (err) {
@@ -53,8 +53,8 @@ app.get("/bestSolve", (req, res) => __awaiter(void 0, void 0, void 0, function* 
 }));
 app.get("/solves:num", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield (0, databasepg_js_1.getSolves)(parseInt(req.params.num.split(":")[1]));
-        res.status(201).json(result.rows.map(({ time }) => time));
+        const result = yield (0, databasepg_js_1.getSolves)(req.params.num);
+        res.status(201).json(result.rows.map(({ time }) => parseInt(time)));
     }
     catch (err) {
         res.status(500).json({ error: err.message });

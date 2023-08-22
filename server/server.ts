@@ -6,7 +6,7 @@ import {
   getBestSolve,
   getSolves,
 } from "./databasepg.js";
-
+import { ParamedRequest } from "./types.js";
 const app = express();
 
 //middleware
@@ -25,9 +25,9 @@ app.post("/insertSolve", async (req, res) => {
 });
 
 // no longer in use
-app.get("/averageOf:num", async (req, res) => {
+app.get("/averageOf:num", async (req: ParamedRequest, res) => {
   try {
-    const result = await getAvergaeOf(+req.params.num.split(":")[1]);
+    const result = await getAvergaeOf(req.params.num);
     res.status(201).json(result);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
@@ -46,10 +46,10 @@ app.get("/bestSolve", async (req, res) => {
   }
 });
 
-app.get("/solves:num", async (req, res) => {
+app.get("/solves:num", async (req: ParamedRequest, res) => {
   try {
-    const result = await getSolves(parseInt(req.params.num.split(":")[1]));
-    res.status(201).json(result.rows.map(({ time }) => time));
+    const result = await getSolves(req.params.num);
+    res.status(201).json(result.rows.map(({ time }) => parseInt(time)));
   } catch (err: any) {
     res.status(500).json({ error: err.message });
     console.error(err.message);

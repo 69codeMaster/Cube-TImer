@@ -18,7 +18,7 @@ export const insertSolve = async (scramble, time) => {
 };
 
 export const fetchAverage = async (averageOf) => {
-  const data = await fetch(`./averageOf:${averageOf}`);
+  const data = await fetch(`./averageOf${averageOf}`);
   const average = await data.json();
   console.log("fecthed average");
   return average;
@@ -32,7 +32,7 @@ export const fetchBest = async () => {
 };
 
 export const fetchSolves = async (numberOfSolves) => {
-  const data = await fetch(`./solves:${numberOfSolves}`);
+  const data = await fetch(`./solves${numberOfSolves}`);
   const solves = await data.json();
   console.log("fecthed solves");
   return solves;
