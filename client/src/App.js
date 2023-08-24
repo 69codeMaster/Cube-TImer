@@ -8,6 +8,7 @@ import SideBar from "./components/UI/SideBar";
 import ScrambleProvider from "./store/ScrambleContext";
 import DbProvider from "./store/DbContext";
 
+// TODO : turn history to a scrollable table with header
 function App() {
   const [running, setRunning] = useState(false);
   return (
@@ -22,7 +23,6 @@ function App() {
           <Average averageOf={12} running={running} />
         </div>
       </div>
-      // TODO : turn history to a scrollable table with header
       {/* <SideBar>
         <HistoryList />
       </SideBar> */}
