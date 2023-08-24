@@ -27,13 +27,17 @@ export const fetchAverage = async (averageOf) => {
 export const fetchBest = async () => {
   const data = await fetch(`./bestSolve`);
   const pb = await data.json();
-  console.log("fecthed best");
   return pb;
 };
 
 export const fetchSolves = async (numberOfSolves) => {
   const data = await fetch(`./solves${numberOfSolves}`);
   const solves = await data.json();
-  console.log("fecthed solves");
   return solves;
+};
+
+export const fetchHistory = async () => {
+  const data = await fetch(`./history`);
+  const history = await data.json();
+  return history;
 };

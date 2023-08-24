@@ -7,11 +7,6 @@ export const formatTime = (timeValue) => {
 };
 
 export const formatAverage = (average) => {
-  if (average === "Nan") return average;
-  average = String(average).split(".")[0];
-  return (
-    average.substring(0, average.length / 2) +
-    "." +
-    average.substring(average.length / 2, average.length / 2 + 2)
-  );
+  if (typeof average == "string") return average;
+  return Math.round(average) / 100;
 };

@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getAvergaeOf = exports.getBestSolve = exports.getSolves = exports.addSolveToDB = void 0;
+exports.getHistory = exports.getAvergaeOf = exports.getBestSolve = exports.getSolves = exports.addSolveToDB = void 0;
 const pg_1 = __importDefault(require("pg"));
 const { Pool } = pg_1.default;
 const pool = new Pool({
@@ -32,13 +32,13 @@ function addSolveToDB({ scramble, time }) {
 exports.addSolveToDB = addSolveToDB;
 function getSolves(numberOfSolves = 15) {
     return __awaiter(this, void 0, void 0, function* () {
-        const query = ` SELECT time
+        const query = `SELECT time
                   FROM main_schema.solves
                   ORDER BY solve_id
                   LIMIT $1`;
         const values = [numberOfSolves];
         const result = yield pool.query(query, values);
-        return result;
+        return result.rows;
     });
 }
 exports.getSolves = getSolves;
@@ -50,9 +50,7 @@ function getBestSolve() {
                  ORDER BY time ASC
                  LIMIT 1;`;
         const result = yield pool.query(query);
-        if (!result)
-            return "Nan";
-        return (_a = result.rows[0]) !== null && _a !== void 0 ? _a : [];
+        return (_a = result === null || result === void 0 ? void 0 : result.rows[0]) !== null && _a !== void 0 ? _a : null;
     });
 }
 exports.getBestSolve = getBestSolve;
@@ -66,9 +64,19 @@ function getAvergaeOf(numberOfSolves) {
                         ) as avg_table;`;
         const values = [numberOfSolves];
         const result = yield pool.query(query, values);
-        if (+result.rows[0].num_of_rows < numberOfSolves)
-            return "Nan";
+        console.log(+result.rows[0].num_of_rows, numberOfSolves);
+        // if (+result.rows[0].num_of_rows < numberOfSolves) return "Nan";
         return +result.rows[0].average / (numberOfSolves - 2);
     });
 }
 exports.getAvergaeOf = getAvergaeOf;
+function getHistory() {
+    return __awaiter(this, void 0, void 0, function* () {
+        const query = `SELECT *
+                  FROM history_schema.history
+                  ORDER BY solve_id;`;
+        const result = yield pool.query(query);
+        return result.rows;
+    });
+}
+exports.getHistory = getHistory;

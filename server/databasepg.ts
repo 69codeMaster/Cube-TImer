@@ -1,5 +1,5 @@
-import pg, { QueryResultRow } from "pg";
-import { SolveProps } from "./types";
+import pg, { Query, QueryResult, QueryResultRow } from "pg";
+import { HistoryRecord, SolveProps, SolveRecord } from "./types";
 const { Pool } = pg;
 
 const pool = new Pool({
@@ -18,28 +18,26 @@ export async function addSolveToDB({ scramble, time }: SolveProps) {
 }
 
 export async function getSolves(numberOfSolves: number = 15) {
-  
-  const query = ` SELECT time
+  const query = `SELECT time
                   FROM main_schema.solves
                   ORDER BY solve_id
                   LIMIT $1`;
 
   const values = [numberOfSolves];
 
-  const result = await pool.query(query, values);
+  const result: QueryResult<{ time: number }> = await pool.query(query, values);
 
-  return result;
+  return result.rows;
 }
 
-export async function getBestSolve(): Promise<number | "Nan"> {
+export async function getBestSolve(): Promise<SolveRecord | null> {
   const query = `SELECT *
                  FROM main_schema.solves
                  ORDER BY time ASC
                  LIMIT 1;`;
 
-  const result = await pool.query(query);
-  if (!result) return "Nan";
-  return result.rows[0] ?? [];
+  const result: QueryResult<SolveRecord> = await pool.query(query);
+  return result?.rows[0] ?? null;
 }
 
 export async function getAvergaeOf(
@@ -56,7 +54,19 @@ export async function getAvergaeOf(
 
   const result = await pool.query(query, values);
 
+  console.log(+result.rows[0].num_of_rows, numberOfSolves);
+
   if (+result.rows[0].num_of_rows < numberOfSolves) return "Nan";
 
   return +result.rows[0].average / (numberOfSolves - 2);
+}
+
+export async function getHistory(): Promise<HistoryRecord[]> {
+  const query = `SELECT *
+                  FROM history_schema.history
+                  ORDER BY solve_id;`;
+
+  const result: QueryResult<HistoryRecord> = await pool.query(query);
+
+  return result.rows;
 }

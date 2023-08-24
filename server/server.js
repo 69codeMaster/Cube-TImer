@@ -54,7 +54,17 @@ app.get("/bestSolve", (req, res) => __awaiter(void 0, void 0, void 0, function* 
 app.get("/solves:num", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield (0, databasepg_js_1.getSolves)(req.params.num);
-        res.status(201).json(result.rows.map(({ time }) => parseInt(time)));
+        res.status(201).json(result);
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+        console.error(err.message);
+    }
+}));
+app.get("/history", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield (0, databasepg_js_1.getHistory)();
+        res.status(201).json(result);
     }
     catch (err) {
         res.status(500).json({ error: err.message });

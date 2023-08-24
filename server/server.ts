@@ -5,6 +5,7 @@ import {
   getAvergaeOf,
   getBestSolve,
   getSolves,
+  getHistory,
 } from "./databasepg.js";
 import { ParamedRequest } from "./types.js";
 const app = express();
@@ -49,10 +50,21 @@ app.get("/bestSolve", async (req, res) => {
 app.get("/solves:num", async (req: ParamedRequest, res) => {
   try {
     const result = await getSolves(req.params.num);
-    res.status(201).json(result.rows.map(({ time }) => parseInt(time)));
+    res.status(201).json(result);
   } catch (err: any) {
     res.status(500).json({ error: err.message });
     console.error(err.message);
   }
 });
+
+app.get("/history", async (req, res) => {
+  try {
+    const result = await getHistory();
+    res.status(201).json(result);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+    console.error(err.message);
+  }
+});
+
 app.listen(5000, () => console.log("server strated at port 5000"));
