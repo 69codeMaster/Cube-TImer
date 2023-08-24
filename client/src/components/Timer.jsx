@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import "./Timer.css";
 
-import { formatTime } from "../utils/formatUtils";
+import { formatTimer } from "../utils/formatUtils";
 import CustomConfetti from "./CustomConfetti";
 import { insertSolve } from "../utils/apiUtils";
 import { TIME_TO_START } from "../constants/scrambleData";
@@ -73,7 +73,7 @@ function Timer({ setDbUpdated, running, setRunning }) {
   return (
     <div
       className={`timer ${ready ? "ready" : ""} ${running ? "running" : ""}`}>
-      {formatTime(time)}
+      {formatTimer(time)}
       {isConfetti === true && <CustomConfetti />}
     </div>
   );

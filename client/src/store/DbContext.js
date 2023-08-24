@@ -1,5 +1,5 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { fetchAverage, fetchBest, fetchSolves } from "../utils/apiUtils";
+import { fetchHistory, fetchBest, fetchSolves } from "../utils/apiUtils";
 import { getAverage } from "../utils/averagesUtil";
 
 const DbContext = createContext({
@@ -9,6 +9,7 @@ const DbContext = createContext({
   setAverages: () => {},
   best: Number,
   setBest: () => {},
+  history: [],
 });
 
 export function useDB() {
@@ -17,6 +18,7 @@ export function useDB() {
 
 export default function DbProvider({ children }) {
   const [solves, setSolves] = useState();
+  const [history, setHistory] = useState();
   const [averages, setAverages] = useState({
     5: Number,
     12: Number,
@@ -24,11 +26,13 @@ export default function DbProvider({ children }) {
   const [best, setBest] = useState();
 
   useEffect(() => {
-    fetchSolves(15).then((res) => setSolves(res.map((solve) => Number(solve))));
-    fetchBest().then((res) => setBest(Number(res)));
+    fetchSolves(15).then((res) => setSolves(res.map(({ time }) => time)));
+    fetchHistory().then((res) => setHistory(res));
+    fetchBest().then((res) => setBest(res));
   }, []);
 
   useEffect(() => {
+    console.log(solves);
     if (solves) {
       setAverages((prevAverage) => {
         return { ...prevAverage, 5: getAverage(5, solves) };
@@ -46,6 +50,7 @@ export default function DbProvider({ children }) {
     setAverages: setAverages,
     best: best,
     setBest: setBest,
+    history: history,
   };
 
   return (

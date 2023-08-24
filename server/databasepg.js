@@ -65,7 +65,8 @@ function getAvergaeOf(numberOfSolves) {
         const values = [numberOfSolves];
         const result = yield pool.query(query, values);
         console.log(+result.rows[0].num_of_rows, numberOfSolves);
-        // if (+result.rows[0].num_of_rows < numberOfSolves) return "Nan";
+        if (+result.rows[0].num_of_rows < numberOfSolves)
+            return "Nan";
         return +result.rows[0].average / (numberOfSolves - 2);
     });
 }
