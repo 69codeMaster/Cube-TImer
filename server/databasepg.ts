@@ -18,7 +18,7 @@ export async function addSolveToDB({ scramble, time }: SolveProps) {
 }
 
 export async function getSolves(numberOfSolves: number = 15) {
-  const query = `SELECT time
+  const query = ` SELECT time
                   FROM main_schema.solves
                   ORDER BY solve_id
                   LIMIT $1`;

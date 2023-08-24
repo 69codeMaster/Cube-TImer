@@ -32,7 +32,7 @@ function addSolveToDB({ scramble, time }) {
 exports.addSolveToDB = addSolveToDB;
 function getSolves(numberOfSolves = 15) {
     return __awaiter(this, void 0, void 0, function* () {
-        const query = `SELECT time
+        const query = ` SELECT time
                   FROM main_schema.solves
                   ORDER BY solve_id
                   LIMIT $1`;
