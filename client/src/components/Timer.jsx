@@ -23,9 +23,12 @@ function Timer({ setDbUpdated, running, setRunning }) {
 
   const handleTimeStopped = async () => {
     await insertSolve(scramble, time);
-    setSolves((prevSolves) => [...prevSolves, time]);
+    // ! delete on prod
+    if (time > TIME_TO_START) {
+      setSolves((prevSolves) => [...prevSolves, time]);
+      setIsConfetti(time / 100 < 10);
+    }
     setScramble();
-    setIsConfetti(time / 100 < 10);
   };
 
   useEffect(() => {

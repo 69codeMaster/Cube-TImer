@@ -1,4 +1,4 @@
-import { NotInsertedToDb } from "./messages";
+import { NotInsertedToDb } from "./messagesUtil";
 export const insertSolve = async (scramble, time) => {
   const data = JSON.stringify({
     scramble: scramble,
@@ -6,23 +6,19 @@ export const insertSolve = async (scramble, time) => {
   });
 
   // ! this should be remove in production only here for convinient testing
-  if (time < 500) {
-    NotInsertedToDb("solve want inserted to DB");
-    return;
-  }
-
-  return;
-  console.log(time);
-  try {
-    await fetch("/insertSolve", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: data,
-    });
-  } catch (error) {
-    console.log(error.message);
+  if (time < 500) NotInsertedToDb("solve wasn't inserted to DB");
+  else {
+    try {
+      await fetch("/insertSolve", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
   }
 };
 
