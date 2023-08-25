@@ -7,18 +7,51 @@
 :root {
   --color-primary: #5cdb95;
   --primary-500: #379683;
+  --color-accent: #05386b;
+  --accent-300: #0f6b7b;
+  --primary-300: #8ee4af;
+  --primary-200: #edf5e1;
 }
 
 .app-container {
   height: 100vh;
   width: 100vw;
-  display: grid;
-  align-items: center;
-  justify-items: center;
-  grid-template-rows: 40vh 4ch 25vh;
   background: linear-gradient(
     to bottom,
     var(--color-primary),
     var(--primary-500)
   );
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  grid-template-columns: 10% 90%;
+  grid-template-rows: 25% 40% 10%;
+  grid-template-areas:
+    "sidebar scramble"
+    "sidebar timer"
+    "sidebar average";
+}
+
+.average {
+  grid-area: average;
+}
+
+.scramble {
+  grid-area: scramble;
+}
+
+.timer {
+  grid-area: timer;
+}
+
+.side-bar {
+  grid-area: sideBar;
+}
+
+.timer *,
+.scramble *,
+.average:not(span) {
+  background: linear-gradient(to left, var(--color-accent), var(--accent-300));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }

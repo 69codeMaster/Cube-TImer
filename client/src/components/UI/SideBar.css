@@ -2,7 +2,7 @@
   position: fixed; /* Fixed position */
   top: 0; /* Stick to the top */
   left: 0; /* Stick to the left */
-  width: 10vw;
+  width: 15vw;
   height: 100vh;
   background: red;
 }

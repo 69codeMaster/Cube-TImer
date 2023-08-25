@@ -1,11 +1,4 @@
 :root {
-  --color-primary: #5cdb95;
-  --color-accent: #05386b;
-  --accent-300: #0f6b7b;
-  --primary-500: #379683;
-  --primary-300: #8ee4af;
-  --primary-200: #edf5e1;
-
   --width-on-run: 68vw;
   --font-on-run: 12vw;
 }
@@ -14,10 +7,6 @@
   text-align: center;
   transition: font-size 0.2s ease;
   font-size: 8vw;
-  background-color: red;
-  background: linear-gradient(to left, var(--color-accent), var(--accent-300));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
 }
 
 .ready {

@@ -13,19 +13,23 @@ function App() {
   const [running, setRunning] = useState(false);
   return (
     <DbProvider>
-      <div className="app-container">
+      <aside className="side-bar">
+        <SideBar>{/* <HistoryList /> */}</SideBar>
+      </aside>
+      <main className="app-container">
         <ScrambleProvider>
-          <Scramble running={running} />
-          <Timer running={running} setRunning={setRunning} />
+          <header className="scramble">
+            <Scramble running={running} />
+          </header>
+          <div className="timer">
+            <Timer running={running} setRunning={setRunning} />
+          </div>
         </ScrambleProvider>
-        <div className="averages-container">
+        <footer className="average">
           <Average averageOf={5} running={running} />
           <Average averageOf={12} running={running} />
-        </div>
-      </div>
-      {/* <SideBar>
-        <HistoryList />
-      </SideBar> */}
+        </footer>
+      </main>
     </DbProvider>
   );
 }
