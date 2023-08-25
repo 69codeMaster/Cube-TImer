@@ -9,6 +9,7 @@ import ScrambleProvider from "./store/ScrambleContext";
 import DbProvider from "./store/DbContext";
 
 // TODO : turn history to a scrollable table with header
+
 function App() {
   const [running, setRunning] = useState(false);
   return (

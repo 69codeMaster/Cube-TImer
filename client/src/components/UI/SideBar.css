@@ -4,5 +4,6 @@
   left: 0; /* Stick to the left */
   width: 15vw;
   height: 100vh;
-  background: red;
+  background-color: rgba(5, 56, 107, 0.6);
+  z-index: 1;
 }

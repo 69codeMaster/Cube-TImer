@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz@1,6..96&family=Ultra&display=swap");
 .average {
-  font-size: 2vw;
+  font-size: 1.2rem;
   opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }

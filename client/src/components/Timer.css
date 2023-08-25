@@ -1,23 +1,23 @@
 :root {
   --width-on-run: 68vw;
-  --font-on-run: 12vw;
+  --font-on-run: 6rem;
+  --magic-number: calc(0.3 * 6rem);
 }
 
 .timer {
-  text-align: center;
   transition: font-size 0.2s ease;
   font-size: 8vw;
 }
 
 .ready {
   font-size: var(--font-on-run);
-  width: var(--width-on-run);
+  width: min-content;
   text-align: center;
 }
 
 .running {
   font-size: var(--font-on-run);
   width: var(--width-on-run);
-  transform: translateX(0.14ch);
+  transform: translateX(var(--magic-number));
   text-align: unset;
 }

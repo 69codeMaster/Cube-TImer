@@ -7,8 +7,6 @@ export const formatTimer = (timeValue) => {
 };
 
 export const formatAverage = (average) => {
-  if (typeof average == "string") return average;
+  if (typeof average === "string") return average;
   return Math.round(average) / 100;
 };
-
-

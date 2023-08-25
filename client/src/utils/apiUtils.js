@@ -1,9 +1,18 @@
+import { NotInsertedToDb } from "./messages";
 export const insertSolve = async (scramble, time) => {
   const data = JSON.stringify({
     scramble: scramble,
     time: time,
   });
 
+  // ! this should be remove in production only here for convinient testing
+  if (time < 500) {
+    NotInsertedToDb("solve want inserted to DB");
+    return;
+  }
+
+  return;
+  console.log(time);
   try {
     await fetch("/insertSolve", {
       method: "POST",
