@@ -7,10 +7,12 @@
 :root {
   --color-primary: #5cdb95;
   --primary-500: #379683;
-  --color-accent: #05386b;
   --accent-300: #0f6b7b;
   --primary-300: #8ee4af;
   --primary-200: #edf5e1;
+  --color-accent: #05386b;
+  --accent-700: #0a1f34;
+  --nav-bar_width: 20vw;
 }
 
 .app-container {
@@ -24,8 +26,8 @@
   display: grid;
   align-items: center;
   justify-items: center;
-  grid-template-columns: 15% 85%;
-  grid-template-rows: 25% 40% auto;
+  grid-template-columns: var(--nav-bar_width) auto;
+  grid-template-rows: 25% 40% 20% auto;
   grid-template-areas:
     "sidebar scramble"
     "sidebar timer"
@@ -46,6 +48,7 @@
 
 .side-bar {
   grid-area: sidebar;
+  grid-row: 1 / 5;
 }
 
 .timer *,
