@@ -15,10 +15,10 @@ function App() {
   const [running, setRunning] = useState(false);
   return (
     <DbProvider>
-      <aside className="side-bar">
-        <SideBar>{/* <HistoryList /> */}</SideBar>
-      </aside>
       <main className="app-container">
+        <aside className="side-bar">
+          <SideBar>{/* <HistoryList /> */}</SideBar>
+        </aside>
         <ScrambleProvider>
           <header className="scramble">
             <Scramble running={running} />

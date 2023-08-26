@@ -25,7 +25,7 @@
   align-items: center;
   justify-items: center;
   grid-template-columns: 15% 85%;
-  grid-template-rows: 25% 40% 10%;
+  grid-template-rows: 25% 40% auto;
   grid-template-areas:
     "sidebar scramble"
     "sidebar timer"
@@ -45,7 +45,7 @@
 }
 
 .side-bar {
-  grid-area: sideBar;
+  grid-area: sidebar;
 }
 
 .timer *,
