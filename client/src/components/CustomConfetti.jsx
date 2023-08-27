@@ -11,6 +11,7 @@ export default function CustomConfetti() {
       width={width}
       height={height}
       recycle={false}
+      tweenDuration={2000}
     />
   );
 }

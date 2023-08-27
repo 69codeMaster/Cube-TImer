@@ -9,16 +9,15 @@
   font-size: 8vw;
 }
 
-.ready {
+.ready,
+.running {
   font-size: var(--font-on-run);
-  width: min-content;
   text-align: center;
+  width: var(--width-on-run);
   transform: translateX(-15%);
 }
+
 .running {
-  /* font-size: var(--font-on-run);
-  transform: translateX(var(--magic-number));
-  transform: translateX(-10%); */
   text-align: unset;
   width: var(--width-on-run);
 }

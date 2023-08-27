@@ -1,14 +1,16 @@
 .side-nav {
   width: var(--nav-bar_width);
   height: 100vh;
-  background: linear-gradient(rgba(5, 56, 107, 0.7) 70%, rgba(5, 56, 107, 0.9));
+  /* background: linear-gradient(rgba(5, 56, 107, 0.7) 70%, rgba(5, 56, 107, 0.9)); */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow: hidden scroll;
   scrollbar-width: none;
   opacity: 1;
-  transition: opacity 0.2s ease;
+  transition: opacity var(--transition-time) ease;
+  transition-delay: var(--transition-time);
   border-radius: 0 5px 5px 0;
+  z-index: 1;
 }
 
 .side-nav::-webkit-scrollbar {
@@ -17,4 +19,5 @@
 
 .hidden {
   opacity: 0;
+  transition-delay: 0s;
 }

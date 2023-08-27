@@ -16,13 +16,13 @@ function App() {
       {/* <main className={`app-container ${ready ? "ready" : "not-ready"}`}> */}
       <main className="app-container not-ready">
         <aside className="side-bar">
-          <SideBar ready={ready}>
+          <SideBar ready={running || ready}>
             <HistoryList />
           </SideBar>
         </aside>
         <ScrambleProvider>
           <header className="scramble">
-            <Scramble running={ready} />
+            <Scramble running={running || ready} />
           </header>
           <div className="timer">
             <Timer
@@ -34,8 +34,8 @@ function App() {
           </div>
         </ScrambleProvider>
         <footer className="average">
-          <Average averageOf={5} running={ready} />
-          <Average averageOf={12} running={ready} />
+          <Average averageOf={5} running={running || ready} />
+          <Average averageOf={12} running={running || ready} />
         </footer>
       </main>
     </DbProvider>

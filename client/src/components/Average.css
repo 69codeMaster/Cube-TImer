@@ -3,11 +3,14 @@
   font-size: 2.5vw;
   opacity: 1;
   transition: opacity var(--transition-time) ease-in-out;
+  transition-delay: var(--transition-time);
 }
 
 .hide-average {
   opacity: 0;
+  transition-delay: 0s;
 }
+
 .averageOf {
   font-family: "Ultra", serif;
 }

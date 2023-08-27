@@ -56,6 +56,7 @@ function Timer({ ready, setReady, running, setRunning }) {
 
     if (running) {
       setIsConfetti(false);
+      setReady(false);
       setTime(0);
 
       interval = setInterval(() => {
@@ -76,7 +77,7 @@ function Timer({ ready, setReady, running, setRunning }) {
     <div
       className={`timer ${ready ? "ready" : ""} ${running ? "running" : ""}`}>
       {formatTimer(time)}
-      {isConfetti === true && <CustomConfetti />}
+      {isConfetti && <CustomConfetti />}
     </div>
   );
 }

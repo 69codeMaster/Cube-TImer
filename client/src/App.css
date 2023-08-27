@@ -7,17 +7,24 @@
 :root {
   --color-primary: #5cdb95;
   --primary-500: #379683;
+  --accent-400: #214d55;
   --accent-300: #0f6b7b;
   --primary-300: #8ee4af;
   --primary-200: #edf5e1;
   --color-accent: #05386b;
   --accent-700: #0a1f34;
-  --nav-bar_width: 20vw;
-  --transition-time: 0.4s;
+  --nav-bar_width: 22vw;
+  --transition-time: 0.3s;
   --background-color: linear-gradient(
     to bottom,
     var(--color-primary),
     var(--primary-500)
+  );
+
+  --background-accent: linear-gradient(
+    to left,
+    var(--color-accent),
+    var(--accent-300)
   );
 }
 
@@ -26,6 +33,7 @@
   width: 100vw;
   background: var(--background-color);
   font-size: 2.5vw;
+  overflow: hidden;
 }
 
 .not-ready {
@@ -64,7 +72,7 @@
 .timer *,
 .scramble *,
 .average:not(span) {
-  background: linear-gradient(to left, var(--color-accent), var(--accent-300));
+  background: var(--background-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
