@@ -13,25 +13,35 @@
   --color-accent: #05386b;
   --accent-700: #0a1f34;
   --nav-bar_width: 20vw;
+  --transition-time: 0.4s;
+  --background-color: linear-gradient(
+    to bottom,
+    var(--color-primary),
+    var(--primary-500)
+  );
 }
 
 .app-container {
   height: 100vh;
   width: 100vw;
-  background: linear-gradient(
-    to bottom,
-    var(--color-primary),
-    var(--primary-500)
-  );
+  background: var(--background-color);
+  overflow: hidden;
+}
+
+.not-ready {
   display: grid;
   align-items: center;
   justify-items: center;
+
   grid-template-columns: var(--nav-bar_width) auto;
   grid-template-rows: 25% 40% 20% auto;
   grid-template-areas:
     "sidebar scramble"
     "sidebar timer"
     "sidebar average";
+}
+
+.ready {
 }
 
 .average {

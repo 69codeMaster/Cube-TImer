@@ -8,30 +8,34 @@ import SideBar from "./components/UI/SideBar";
 import ScrambleProvider from "./store/ScrambleContext";
 import DbProvider from "./store/DbContext";
 
-// TODO : turn history to a scrollable table with header
-// TODO : change css from rem to vw or other responive unit
-
 function App() {
   const [running, setRunning] = useState(false);
+  const [ready, setReady] = useState(false);
   return (
     <DbProvider>
-      <main className="app-container">
+      {/* <main className={`app-container ${ready ? "ready" : "not-ready"}`}> */}
+      <main className="app-container not-ready">
         <aside className="side-bar">
-          <SideBar>
+          <SideBar ready={ready}>
             <HistoryList />
           </SideBar>
         </aside>
         <ScrambleProvider>
           <header className="scramble">
-            <Scramble running={running} />
+            <Scramble running={ready} />
           </header>
           <div className="timer">
-            <Timer running={running} setRunning={setRunning} />
+            <Timer
+              running={running}
+              setRunning={setRunning}
+              ready={ready}
+              setReady={setReady}
+            />
           </div>
         </ScrambleProvider>
         <footer className="average">
-          <Average averageOf={5} running={running} />
-          <Average averageOf={12} running={running} />
+          <Average averageOf={5} running={ready} />
+          <Average averageOf={12} running={ready} />
         </footer>
       </main>
     </DbProvider>

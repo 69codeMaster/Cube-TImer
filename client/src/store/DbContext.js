@@ -40,6 +40,7 @@ export default function DbProvider({ children }) {
       setAverages((prevAverage) => {
         return { ...prevAverage, 12: getAverage(12, solves) };
       });
+      fetchHistory().then((res) => setHistory(res));
     }
   }, [solves]);
 

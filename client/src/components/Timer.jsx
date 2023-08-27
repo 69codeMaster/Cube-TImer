@@ -10,9 +10,8 @@ import { TIME_TO_START } from "../constants/scrambleData";
 import { useScramble } from "../store/ScrambleContext";
 import { useDB } from "../store/DbContext";
 
-function Timer({ setDbUpdated, running, setRunning }) {
+function Timer({ ready, setReady, running, setRunning }) {
   const [time, setTime] = useState(0);
-  const [ready, setReady] = useState(false);
   const [isConfetti, setIsConfetti] = useState(false);
   const { scramble, setScramble } = useScramble();
   const { setSolves } = useDB();
@@ -25,7 +24,7 @@ function Timer({ setDbUpdated, running, setRunning }) {
     await insertSolve(scramble, time);
     // ! delete on prod
     if (time > TIME_TO_START) {
-      setSolves((prevSolves) => [...prevSolves, time]);
+      setSolves((prevSolves) => [time, ...prevSolves]);
       setIsConfetti(time / 100 < 10);
     }
     setScramble();

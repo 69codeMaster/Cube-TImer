@@ -1,11 +1,11 @@
 :root {
-  --width-on-run: 68vw;
+  --width-on-run: 65.2vw;
   --font-on-run: 12vw;
   --magic-number: calc(0.12 * var(--font-on-run));
 }
 
 .timer {
-  transition: font-size 0.2s ease;
+  transition: font-size var(--transition-time) ease;
   font-size: 8vw;
 }
 
@@ -13,11 +13,12 @@
   font-size: var(--font-on-run);
   width: min-content;
   text-align: center;
+  transform: translateX(-15%);
 }
-
 .running {
-  font-size: var(--font-on-run);
-  width: var(--width-on-run);
+  /* font-size: var(--font-on-run);
   transform: translateX(var(--magic-number));
+  transform: translateX(-10%); */
   text-align: unset;
+  width: var(--width-on-run);
 }

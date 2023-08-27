@@ -6,8 +6,14 @@
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow: hidden scroll;
   scrollbar-width: none;
+  opacity: 1;
+  transition: opacity 0.2s ease;
 }
 
 .side-nav::-webkit-scrollbar {
   display: none;
+}
+
+.hidden {
+  opacity: 0;
 }
