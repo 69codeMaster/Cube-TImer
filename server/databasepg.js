@@ -73,9 +73,9 @@ function getAvergaeOf(numberOfSolves) {
 exports.getAvergaeOf = getAvergaeOf;
 function getHistory() {
     return __awaiter(this, void 0, void 0, function* () {
-        const query = `SELECT *
+        const query = `SELECT solve_id, time, average
                   FROM history_schema.history
-                  ORDER BY solve_id;`;
+                  ORDER BY solve_id DESC;`;
         const result = yield pool.query(query);
         return result.rows;
     });

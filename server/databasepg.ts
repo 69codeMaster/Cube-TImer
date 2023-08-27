@@ -62,9 +62,9 @@ export async function getAvergaeOf(
 }
 
 export async function getHistory(): Promise<HistoryRecord[]> {
-  const query = `SELECT *
+  const query = `SELECT solve_id, time, average
                   FROM history_schema.history
-                  ORDER BY solve_id;`;
+                  ORDER BY solve_id DESC;`;
 
   const result: QueryResult<HistoryRecord> = await pool.query(query);
 

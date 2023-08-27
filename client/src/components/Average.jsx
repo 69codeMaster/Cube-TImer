@@ -1,4 +1,4 @@
-import { formatAverage } from "../utils/formatUtils";
+import { formatTime } from "../utils/formatUtils";
 import { useDB } from "../store/DbContext";
 import "./Average.css";
 export default function Average({ averageOf, running }) {
@@ -10,7 +10,7 @@ export default function Average({ averageOf, running }) {
         running && averages[averageOf] ? "hide-average" : ""
       }`}>
       average of <span className="averageOf"> {averageOf} </span>:{" "}
-      {formatAverage(averages[averageOf])}
+      {formatTime(averages[averageOf])}
     </div>
   );
 }

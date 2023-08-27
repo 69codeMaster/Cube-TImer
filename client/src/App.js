@@ -3,7 +3,7 @@ import "./App.css";
 import Timer from "./components/Timer";
 import Scramble from "./components/Scramble";
 import Average from "./components/Average";
-import HistoryList from "./components/HistoryList";
+import HistoryList from "./components/History/HistoryList";
 import SideBar from "./components/UI/SideBar";
 import ScrambleProvider from "./store/ScrambleContext";
 import DbProvider from "./store/DbContext";
@@ -17,7 +17,9 @@ function App() {
     <DbProvider>
       <main className="app-container">
         <aside className="side-bar">
-          <SideBar>{/* <HistoryList /> */}</SideBar>
+          <SideBar>
+            <HistoryList />
+          </SideBar>
         </aside>
         <ScrambleProvider>
           <header className="scramble">

@@ -1,0 +1,10 @@
+.item {
+  font-size: 0.7rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  text-align: center;
+}
+
+.column {
+  border: var(--accent-700) 0.5px solid;
+}

@@ -4,6 +4,10 @@
   background: linear-gradient(rgba(5, 56, 107, 0.7) 70%, rgba(5, 56, 107, 0.9));
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
+  overflow: hidden scroll;
+  scrollbar-width: none;
+}
+
+.side-nav::-webkit-scrollbar {
+  display: none;
 }

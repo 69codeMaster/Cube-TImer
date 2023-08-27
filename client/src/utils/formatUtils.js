@@ -6,7 +6,7 @@ export const formatTimer = (timeValue) => {
   return `${minutes}:${seconds}.${milliseconds}`;
 };
 
-export const formatAverage = (average) => {
+export const formatTime = (average) => {
   if (typeof average === "string") return average;
   return (average / 100).toFixed(2);
 };
