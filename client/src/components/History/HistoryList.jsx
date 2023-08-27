@@ -7,7 +7,7 @@ export default function HistoryList() {
   if (history)
     return (
       <div className="table-container">
-        <HistoryItem solve_id="id" time="time " average="ao5" />
+        <HistoryItem solve_id="id" time="time " ao5="ao5" />
         {history.map((item, idx) => (
           <HistoryItem {...item} key={idx} />
         ))}

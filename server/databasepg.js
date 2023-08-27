@@ -34,7 +34,7 @@ function getSolves(numberOfSolves = 15) {
     return __awaiter(this, void 0, void 0, function* () {
         const query = ` SELECT time
                   FROM main_schema.solves
-                  ORDER BY solve_id
+                  ORDER BY solve_id DESC  
                   LIMIT $1`;
         const values = [numberOfSolves];
         const result = yield pool.query(query, values);
@@ -73,7 +73,7 @@ function getAvergaeOf(numberOfSolves) {
 exports.getAvergaeOf = getAvergaeOf;
 function getHistory() {
     return __awaiter(this, void 0, void 0, function* () {
-        const query = `SELECT solve_id, time, average
+        const query = `SELECT solve_id, time, ao5, ao12
                   FROM history_schema.history
                   ORDER BY solve_id DESC;`;
         const result = yield pool.query(query);
