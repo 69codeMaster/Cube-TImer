@@ -8,6 +8,7 @@
   scrollbar-width: none;
   opacity: 1;
   transition: opacity 0.2s ease;
+  border-radius: 0 5px 5px 0;
 }
 
 .side-nav::-webkit-scrollbar {
