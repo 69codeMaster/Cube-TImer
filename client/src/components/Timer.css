@@ -1,7 +1,7 @@
 :root {
   --width-on-run: 68vw;
-  --font-on-run: 6rem;
-  --magic-number: calc(-0.038 * 6rem);
+  --font-on-run: 12vw;
+  --magic-number: calc(0.12 * var(--font-on-run));
 }
 
 .timer {

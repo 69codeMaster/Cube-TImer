@@ -1,8 +1,8 @@
 .scramble-container {
-  font-size: 0.9rem;
+  font-size: 2vw;
   opacity: 1;
   transition: all 1s ease-in-out;
-  letter-spacing: 0.02rem;
+  letter-spacing: 0.02vw;
 }
 
 .hide {
