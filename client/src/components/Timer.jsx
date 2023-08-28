@@ -33,22 +33,24 @@ function Timer({ ready, setReady, running, setRunning }) {
   useEffect(() => {
     const handleKeyDown = ({ code, repeat }) => {
       if (code !== "Space") return;
+      console.log("set end time");
       pressTimeEnd = Date.now();
-
       if (pressTimeStart && pressTimeEnd - pressTimeStart > TIME_TO_START) {
-        setReady(true);
+        setReady(true); //ready to start running
         setTime(0);
-      } else setReady(false); //ready to start running
+      } else setReady(false);
       if (repeat) return;
       //first press
+      console.log("set start time");
       pressTimeStart = Date.now();
     };
 
     const handleSpaceUp = ({ code }) => {
+      console.log(pressTimeEnd - pressTimeStart);
       if (code !== "Space") return;
       if (running || Date.now() - pressTimeStart > TIME_TO_START)
         setRunning((ran) => !ran);
-      else pressTimeStart = Date.now();
+      else pressTimeStart = 0;
     };
 
     window.addEventListener("keydown", handleKeyDown);

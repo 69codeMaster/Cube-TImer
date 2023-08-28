@@ -54,8 +54,6 @@ export async function getAvergaeOf(
 
   const result = await pool.query(query, values);
 
-  console.log(+result.rows[0].num_of_rows, numberOfSolves);
-
   if (+result.rows[0].num_of_rows < numberOfSolves) return "Nan";
 
   return +result.rows[0].average / (numberOfSolves - 2);

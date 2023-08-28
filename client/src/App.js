@@ -8,6 +8,7 @@ import SideBar from "./components/UI/SideBar";
 import ScrambleProvider from "./store/ScrambleContext";
 import DbProvider from "./store/DbContext";
 
+//TODO add single select from history instead of the entire table
 function App() {
   const [running, setRunning] = useState(false);
   const [ready, setReady] = useState(false);

@@ -32,7 +32,6 @@ export default function DbProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    console.log(solves);
     if (solves) {
       setAverages((prevAverage) => {
         return { ...prevAverage, 5: getAverage(5, solves) };
