@@ -1,5 +1,10 @@
 import { useState, createContext, useContext, useEffect } from "react";
-import { fetchHistory, fetchBest, fetchSolves } from "../utils/apiUtils";
+import {
+  fetchAllHistoryRecords,
+  fetchLastHistoryRecord,
+  fetchBest,
+  fetchSolves,
+} from "../utils/apiUtils";
 import { getAverage } from "../utils/averagesUtil";
 
 const DbContext = createContext({
@@ -27,19 +32,28 @@ export default function DbProvider({ children }) {
 
   useEffect(() => {
     fetchSolves(15).then((res) => setSolves(res.map(({ time }) => time)));
-    fetchHistory().then((res) => setHistory(res));
+    fetchAllHistoryRecords().then((res) => setHistory(res));
     fetchBest().then((res) => setBest(res));
   }, []);
 
   useEffect(() => {
     if (solves) {
+      const ao5 = getAverage(5, solves);
+      const ao12 = getAverage(12, solves);
       setAverages((prevAverage) => {
-        return { ...prevAverage, 5: getAverage(5, solves) };
+        return { ...prevAverage, 5: ao5 };
       });
       setAverages((prevAverage) => {
-        return { ...prevAverage, 12: getAverage(12, solves) };
+        return { ...prevAverage, 12: ao12 };
       });
-      fetchHistory().then((res) => setHistory(res));
+
+      if (history && history[0].solve_id !== solves[0].solve_id)
+        fetchLastHistoryRecord().then((res) =>
+          setHistory((preHistory) => [
+            { ...res, ao5: ao5, ao12: ao12 },
+            ...preHistory,
+          ])
+        );
     }
   }, [solves]);
 

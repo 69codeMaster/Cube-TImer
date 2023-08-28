@@ -38,7 +38,8 @@ var __importDefault =
     return mod && mod.__esModule ? mod : { default: mod };
   };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getHistory =
+exports.getLastHistoryRecord =
+  exports.getAllHistory =
   exports.getAvergaeOf =
   exports.getBestSolve =
   exports.getSolves =
@@ -105,7 +106,7 @@ function getAvergaeOf(numberOfSolves) {
   });
 }
 exports.getAvergaeOf = getAvergaeOf;
-function getHistory() {
+function getAllHistory() {
   return __awaiter(this, void 0, void 0, function* () {
     const query = `SELECT solve_id, time, ao5, ao12
                   FROM history_schema.history
@@ -114,4 +115,15 @@ function getHistory() {
     return result.rows;
   });
 }
-exports.getHistory = getHistory;
+exports.getAllHistory = getAllHistory;
+function getLastHistoryRecord() {
+  return __awaiter(this, void 0, void 0, function* () {
+    const query = `SELECT solve_id, time, ao5, ao12
+                  FROM history_schema.history
+                  ORDER BY solve_id DESC
+                  LIMIT 1;`;
+    const result = yield pool.query(query);
+    return result.rows[0];
+  });
+}
+exports.getLastHistoryRecord = getLastHistoryRecord;

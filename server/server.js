@@ -61,9 +61,19 @@ app.get("/solves:num", (req, res) => __awaiter(void 0, void 0, void 0, function*
         console.error(err.message);
     }
 }));
-app.get("/history", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+app.get("/allHistory", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const result = yield (0, databasepg_js_1.getHistory)();
+        const result = yield (0, databasepg_js_1.getAllHistory)();
+        res.status(201).json(result);
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+        console.error(err.message);
+    }
+}));
+app.get("/lastHistory", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield (0, databasepg_js_1.getLastHistoryRecord)();
         res.status(201).json(result);
     }
     catch (err) {

@@ -5,7 +5,8 @@ import {
   getAvergaeOf,
   getBestSolve,
   getSolves,
-  getHistory,
+  getAllHistory,
+  getLastHistoryRecord,
 } from "./databasepg.js";
 import { ParamedRequest } from "./types.js";
 const app = express();
@@ -57,9 +58,19 @@ app.get("/solves:num", async (req: ParamedRequest, res) => {
   }
 });
 
-app.get("/history", async (req, res) => {
+app.get("/allHistory", async (req, res) => {
   try {
-    const result = await getHistory();
+    const result = await getAllHistory();
+    res.status(201).json(result);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+    console.error(err.message);
+  }
+});
+
+app.get("/lastHistory", async (req, res) => {
+  try {
+    const result = await getLastHistoryRecord();
     res.status(201).json(result);
   } catch (err: any) {
     res.status(500).json({ error: err.message });

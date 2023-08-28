@@ -59,7 +59,7 @@ export async function getAvergaeOf(
   return +result.rows[0].average / (numberOfSolves - 2);
 }
 
-export async function getHistory(): Promise<HistoryRecord[]> {
+export async function getAllHistory(): Promise<HistoryRecord[]> {
   const query = `SELECT solve_id, time, ao5, ao12
                   FROM history_schema.history
                   ORDER BY solve_id DESC;`;
@@ -67,4 +67,17 @@ export async function getHistory(): Promise<HistoryRecord[]> {
   const result: QueryResult<HistoryRecord> = await pool.query(query);
 
   return result.rows;
+}
+
+export async function getLastHistoryRecord(): Promise<
+  HistoryRecord | undefined
+> {
+  const query = `SELECT solve_id, time, ao5, ao12
+                  FROM history_schema.history
+                  ORDER BY solve_id DESC
+                  LIMIT 1;`;
+
+  const result: QueryResult<HistoryRecord> = await pool.query(query);
+
+  return result.rows[0];
 }

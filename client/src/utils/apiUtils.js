@@ -41,8 +41,14 @@ export const fetchSolves = async (numberOfSolves) => {
   return solves;
 };
 
-export const fetchHistory = async () => {
-  const data = await fetch(`./history`);
+export const fetchAllHistoryRecords = async () => {
+  const data = await fetch(`./allHistory`);
   const history = await data.json();
   return history;
+};
+
+export const fetchLastHistoryRecord = async () => {
+  const data = await fetch(`./lastHistory`);
+  const lastHistory = await data.json();
+  return lastHistory;
 };
