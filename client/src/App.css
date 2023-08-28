@@ -14,7 +14,7 @@
   --color-accent: #05386b;
   --accent-700: #0a1f34;
   --nav-bar_width: 22vw;
-  --transition-time: 0.3s;
+  --transition-time: 0.4s;
   --background-color: linear-gradient(
     to bottom,
     var(--color-primary),
@@ -49,9 +49,6 @@
     "sidebar average";
 }
 
-.ready {
-}
-
 .average {
   grid-area: average;
 }
@@ -67,6 +64,7 @@
 .side-bar {
   grid-area: sidebar;
   grid-row: 1 / 5;
+  z-index: 100;
 }
 
 .timer *,

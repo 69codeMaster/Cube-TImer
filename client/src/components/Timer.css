@@ -5,8 +5,8 @@
 }
 
 .timer {
-  transition: font-size var(--transition-time) ease;
   font-size: 9vw;
+  transition: all var(--transition-time) ease-out;
 }
 
 .ready,
