@@ -33,7 +33,6 @@ function Timer({ ready, setReady, running, setRunning }) {
   useEffect(() => {
     const handleKeyDown = ({ code, repeat }) => {
       if (code !== "Space") return;
-      console.log("set end time");
       pressTimeEnd = Date.now();
       if (pressTimeStart && pressTimeEnd - pressTimeStart > TIME_TO_START) {
         setReady(true); //ready to start running
@@ -41,12 +40,10 @@ function Timer({ ready, setReady, running, setRunning }) {
       } else setReady(false);
       if (repeat) return;
       //first press
-      console.log("set start time");
       pressTimeStart = Date.now();
     };
 
     const handleSpaceUp = ({ code }) => {
-      console.log(pressTimeEnd - pressTimeStart);
       if (code !== "Space") return;
       if (running || Date.now() - pressTimeStart > TIME_TO_START)
         setRunning((ran) => !ran);
@@ -78,8 +75,8 @@ function Timer({ ready, setReady, running, setRunning }) {
   return (
     <div
       className={`timer ${ready ? "ready" : ""} ${running ? "running" : ""}`}>
-      {formatTimer(time)}
       {isConfetti && <CustomConfetti />}
+      {formatTimer(time)}
     </div>
   );
 }

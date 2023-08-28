@@ -6,7 +6,7 @@
 
 .timer {
   font-size: 9vw;
-  transition: all var(--transition-time) ease-out;
+  transition: transform var(--transition-time) ease-out;
 }
 
 .ready,
@@ -19,5 +19,4 @@
 
 .running {
   text-align: unset;
-  width: var(--width-on-run);
 }

@@ -1,7 +1,8 @@
 .scramble-container {
   font-size: 2vw;
   opacity: 1;
-  transition: all var(--transition-time) ease-in-out;
+  transition: opacity var(--transition-time) ease-in-out,
+    transform var(--transition-time) ease-in-out;
   transition-delay: var(--transition-time);
   letter-spacing: 0.02vw;
 }

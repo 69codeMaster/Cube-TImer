@@ -2,7 +2,8 @@
 .average {
   font-size: 2.5vw;
   opacity: 1;
-  transition: all var(--transition-time) ease-in-out;
+  transition: opacity var(--transition-time) ease-in-out,
+    transform var(--transition-time) ease-in-out;
   transition-delay: var(--transition-time);
 }
 
