@@ -15,6 +15,7 @@
   --accent-700: #0a1f34;
   --nav-bar_width: 22vw;
   --transition-time: 0.4s;
+  --delay-time: calc(var(--transition-time) / 2);
   --background-color: linear-gradient(
     to bottom,
     var(--color-primary),
@@ -49,8 +50,12 @@
     "sidebar average";
 }
 
-.average {
+.average-container {
   grid-area: average;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
 }
 
 .scramble {
@@ -69,7 +74,7 @@
 
 .timer *,
 .scramble *,
-.average:not(span) {
+.average-container:not(span) {
   background: var(--background-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;

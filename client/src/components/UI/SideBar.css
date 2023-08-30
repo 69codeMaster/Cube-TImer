@@ -9,7 +9,7 @@
   opacity: 1;
   transition: opacity var(--transition-time) ease-in-out,
     transform var(--transition-time) ease-in-out;
-  transition-delay: var(--transition-time);
+  transition-delay: var(--delay-time);
   border-radius: 0 5px 5px 0;
 }
 

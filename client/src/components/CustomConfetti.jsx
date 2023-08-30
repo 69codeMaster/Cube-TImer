@@ -16,7 +16,7 @@ export default function CustomConfetti() {
 
   return (
     <div>
-      {showConfetti && (
+      {true && (
         <Confetti
           numberOfPieces={200}
           gravity={0.05}

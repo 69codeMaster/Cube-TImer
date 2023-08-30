@@ -3,6 +3,11 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
+  cursor: pointer;
+}
+
+.item:hover {
+  opacity: 0.5;
 }
 
 .column {

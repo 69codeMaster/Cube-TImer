@@ -34,7 +34,7 @@ function App() {
             />
           </div>
         </ScrambleProvider>
-        <footer className="average">
+        <footer className="average-container">
           <Average averageOf={5} running={running || ready} />
           <Average averageOf={12} running={running || ready} />
         </footer>
