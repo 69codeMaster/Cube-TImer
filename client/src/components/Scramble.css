@@ -1,14 +1,4 @@
 .scramble-container {
   font-size: 2vw;
-  opacity: 1;
-  transition: opacity var(--transition-time) ease-in-out,
-    transform var(--transition-time) ease-in-out;
-  transition-delay: var(--delay-time);
   letter-spacing: 0.02vw;
-}
-
-.hide {
-  transform: translateX(-20vw);
-  opacity: 0;
-  transition-delay: 0s;
 }

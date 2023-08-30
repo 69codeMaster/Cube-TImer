@@ -14,7 +14,7 @@
   --color-accent: #05386b;
   --accent-700: #0a1f34;
   --nav-bar_width: 22vw;
-  --transition-time: 0.4s;
+  --transition-time: 0.5s;
   --delay-time: calc(var(--transition-time) / 2);
   --background-color: linear-gradient(
     to bottom,
@@ -37,7 +37,7 @@
   overflow: hidden;
 }
 
-.not-ready {
+.gird-template {
   display: grid;
   align-items: center;
   justify-items: center;
@@ -53,9 +53,9 @@
 .average-container {
   grid-area: average;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: red;
 }
 
 .scramble {
@@ -78,4 +78,20 @@
   background: var(--background-accent);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+
+.not-ready {
+  transition-property: opacity, transform;
+  transition-duration: var(--transition-time);
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition-delay: var(--delay-time);
+}
+
+.hide {
+  transition-property: opacity, transform;
+  transition-duration: var(--transition-time);
+  transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  transform: translateX(-20vw);
+  opacity: 0;
 }

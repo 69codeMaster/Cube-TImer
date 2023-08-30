@@ -1,24 +1,14 @@
 .side-nav {
   width: var(--nav-bar_width);
   height: 100vh;
-  /* background: linear-gradient(rgba(5, 56, 107, 0.7) 70%, rgba(5, 56, 107, 0.9)); */
   box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
     rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
   overflow: hidden scroll;
   scrollbar-width: none;
-  opacity: 1;
-  transition: opacity var(--transition-time) ease-in-out,
-    transform var(--transition-time) ease-in-out;
-  transition-delay: var(--delay-time);
+
   border-radius: 0 5px 5px 0;
 }
 
 .side-nav::-webkit-scrollbar {
   display: none;
-}
-
-.hidden {
-  transform: translateX(-20vw);
-  opacity: 0;
-  transition-delay: 0s;
 }

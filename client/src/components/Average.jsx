@@ -5,7 +5,7 @@ export default function Average({ averageOf, running }) {
   const { averages } = useDB();
 
   return (
-    <div className={`average ${running && averages[averageOf] ? "hide" : ""}`}>
+    <div className="average">
       average of <span className="averageOf"> {averageOf} </span> :{" "}
       {formatTime(averages[averageOf])}
     </div>

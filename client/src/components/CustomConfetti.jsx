@@ -16,10 +16,9 @@ export default function CustomConfetti() {
 
   return (
     <div>
-      {true && (
+      {showConfetti && (
         <Confetti
           numberOfPieces={200}
-          gravity={0.05}
           width={width}
           height={height}
           recycle={false}
