@@ -15,15 +15,14 @@ function App() {
   const hide = running || ready;
   return (
     <DbProvider>
-      {/* <main className={`app-container ${ready ? "ready" : "not-ready"}`}> */}
       <main className="app-container gird-template">
-        <aside className={`side-bar ${hide ? "hide" : "not-ready"}`}>
+        <aside className={`side-bar ${hide ? "hide" : "show"}`}>
           <SideBar>
             <HistoryList />
           </SideBar>
         </aside>
         <ScrambleProvider>
-          <header className={`scramble ${hide ? "hide" : "not-ready"}`}>
+          <header className={`scramble ${hide ? "hide" : "show"}`}>
             <Scramble />
           </header>
           <div className="timer">
@@ -35,7 +34,7 @@ function App() {
             />
           </div>
         </ScrambleProvider>
-        <footer className={`average-container ${hide ? "hide" : "not-ready"}`}>
+        <footer className={`average-container ${hide ? "hide" : "show"}`}>
           <Average averageOf={5} />
           <Average averageOf={12} />
         </footer>

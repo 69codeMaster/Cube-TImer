@@ -12,7 +12,7 @@
 
 .column {
   padding: 5% 0;
-  border: var(--primary-700) 0.1em solid;
+  border: var(--primary-500) 0.1em solid;
   color: var(--accent-400);
 }
 

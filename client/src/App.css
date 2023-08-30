@@ -14,7 +14,7 @@
   --color-accent: #05386b;
   --accent-700: #0a1f34;
   --nav-bar_width: 22vw;
-  --transition-time: 0.5s;
+  --transition-time: 0.4s;
   --delay-time: calc(var(--transition-time) / 2);
   --background-color: linear-gradient(
     to bottom,
@@ -80,7 +80,7 @@
   -webkit-text-fill-color: transparent;
 }
 
-.not-ready {
+.show {
   transition-property: opacity, transform;
   transition-duration: var(--transition-time);
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
@@ -92,6 +92,6 @@
   transition-duration: var(--transition-time);
   transition-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
 
-  transform: translateX(-20vw);
+  transform: translateX(-25vw);
   opacity: 0;
 }

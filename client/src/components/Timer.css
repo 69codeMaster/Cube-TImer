@@ -1,6 +1,7 @@
 :root {
-  --width-on-run: 65.2vw;
-  --font-on-run: 12vw;
+  /* --width-on-run: 65.2vw; */
+  --font-on-run: 13vw;
+  --width-on-run: calc(5.43 * var(--font-on-run));
   --magic-number: calc(0.12 * var(--font-on-run));
 }
 
@@ -14,7 +15,7 @@
   font-size: var(--font-on-run);
   text-align: center;
   width: var(--width-on-run);
-  transform: translateX(-15%);
+  transform: translateX(-10.5vw);
 }
 
 .running {
