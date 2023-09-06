@@ -8,7 +8,6 @@ import SideBar from "./components/UI/SideBar";
 import ScrambleProvider from "./store/ScrambleContext";
 import DbProvider from "./store/DbContext";
 
-//TODO fix weird confetti bug
 function App() {
   const [running, setRunning] = useState(false);
   const [ready, setReady] = useState(false);

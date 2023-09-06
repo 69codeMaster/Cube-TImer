@@ -1,19 +1,13 @@
+.wrapper {
+  position: relative;
+}
+
 .item {
   font-size: 0.6em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
   cursor: pointer;
-}
-
-.item:hover {
-  opacity: 0.5;
-}
-
-.column {
-  padding: 5% 0;
-  border: var(--primary-500) 0.1em solid;
-  color: var(--accent-400);
 }
 
 .header:has(.column) .column {
@@ -26,4 +20,26 @@
   opacity: 1;
   font-weight: 500;
   background: var(--accent-300);
+}
+
+.column {
+  padding: 5% 0;
+  color: var(--accent-400);
+  border: var(--primary-500) 0.1em solid;
+}
+
+.item:not(.header):hover {
+  opacity: 0.3;
+}
+
+.icon {
+  position: absolute;
+  top: 2px;
+  visibility: hidden;
+  transition: transform 0.3s cubic-bezier(0.2, 0.55, 0.27, 1.55);
+}
+
+.wrapper:hover .icon {
+  transform: translateX(10vw);
+  visibility: visible;
 }

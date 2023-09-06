@@ -52,21 +52,23 @@
 
 .average-container {
   grid-area: average;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-content: center;
+  justify-items: center;
 }
 
 .scramble {
+  display: grid;
   grid-area: scramble;
 }
 
 .timer {
+  display: grid;
   grid-area: timer;
 }
 
 .side-bar {
+  display: grid;
   grid-area: sidebar;
   grid-row: 1 / 5;
   z-index: 100;
