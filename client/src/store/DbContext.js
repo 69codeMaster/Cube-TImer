@@ -29,14 +29,16 @@ export default function DbProvider({ children }) {
     12: Number,
   });
   const [best, setBest] = useState();
-
+  
   useEffect(() => {
+    console.log("fetching from db");
     fetchSolves(15).then((res) => setSolves(res.map(({ time }) => time)));
     fetchAllHistoryRecords().then((res) => setHistory(res));
     fetchBest().then((res) => setBest(res));
   }, []);
 
   useEffect(() => {
+    console.log("solves rerndered");
     if (solves) {
       const ao5 = getAverage(5, solves);
       const ao12 = getAverage(12, solves);
@@ -47,6 +49,7 @@ export default function DbProvider({ children }) {
         return { ...prevAverage, 12: ao12 };
       });
 
+      // console.log(history[0].solve_id, solves[0].solve_id);
       if (history && history[0].solve_id !== solves[0].solve_id)
         fetchLastHistoryRecord().then((res) =>
           setHistory((preHistory) => [

@@ -1,11 +1,11 @@
-.table-container {
-  display: flex;
-  flex-direction: column;
+.table-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  font-weight: 500;
+  background: var(--accent-300);
 }
 
-.table-header {
-  display: flex;
-  font-size: smaller;
-  justify-content: space-between;
-  padding-inline: 10%;
+.table-header * {
+  color: var(--primary-200) !important;
 }

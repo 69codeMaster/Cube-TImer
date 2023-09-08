@@ -24,6 +24,7 @@ function Timer({ ready, setReady, running, setRunning }) {
     await insertSolve(scramble, time);
     // ! delete on prod
     if (time > TIME_TO_START) {
+      console.log(" adding solve");
       setSolves((prevSolves) => [time, ...prevSolves]);
       setIsConfetti(time / 100 < 10);
     }

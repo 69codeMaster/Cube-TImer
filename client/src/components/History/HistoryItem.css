@@ -2,24 +2,16 @@
   position: relative;
 }
 
+.wrapper:hover .item:not(.header) {
+  opacity: 0.4;
+}
+
 .item {
   font-size: 0.6em;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   text-align: center;
-  cursor: pointer;
-}
-
-.header:has(.column) .column {
-  color: var(--primary-200);
-}
-
-.header {
-  position: sticky;
-  top: 0;
-  opacity: 1;
-  font-weight: 500;
-  background: var(--accent-300);
+  transition: opacity 0.2s ease-in;
 }
 
 .column {
@@ -28,18 +20,15 @@
   border: var(--primary-500) 0.1em solid;
 }
 
-.item:not(.header):hover {
-  opacity: 0.3;
-}
-
 .icon {
   position: absolute;
-  top: 2px;
-  visibility: hidden;
+  top: 50%;
+  left: 50%;
   transition: transform 0.3s cubic-bezier(0.2, 0.55, 0.27, 1.55);
+  transform: translate(-15vw, -50%);
+  cursor: pointer;
 }
 
 .wrapper:hover .icon {
-  transform: translateX(10vw);
-  visibility: visible;
+  transform: translate(-50%, -50%);
 }

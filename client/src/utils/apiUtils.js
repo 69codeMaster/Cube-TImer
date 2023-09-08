@@ -52,3 +52,16 @@ export const fetchLastHistoryRecord = async () => {
   const lastHistory = await data.json();
   return lastHistory;
 };
+
+export const deleteSolve = async (solveToDelete) => {
+  try {
+    fetch(`/deleteSolve${solveToDelete}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};

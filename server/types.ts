@@ -4,7 +4,8 @@ export interface SolveProps {
   time: number;
 }
 
-export type ParamedRequest = Request<{ num: number }>;
+export type GetSolvesParam = Request<{ num: number }>;
+export type DeleteSolveParam = Request<{ solve_id: number }>;
 
 export interface SolveRecord {
   scramble: string;
@@ -15,4 +16,3 @@ export interface SolveRecord {
 export interface HistoryRecord extends SolveRecord {
   averae: number;
 }
-

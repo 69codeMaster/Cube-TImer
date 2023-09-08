@@ -7,8 +7,9 @@ import {
   getSolves,
   getAllHistory,
   getLastHistoryRecord,
+  deleteSolve,
 } from "./databasepg.js";
-import { ParamedRequest } from "./types.js";
+import { DeleteSolveParam, GetSolvesParam } from "./types.js";
 const app = express();
 
 //middleware
@@ -27,7 +28,7 @@ app.post("/insertSolve", async (req, res) => {
 });
 
 // no longer in use
-app.get("/averageOf:num", async (req: ParamedRequest, res) => {
+app.get("/averageOf:num", async (req: GetSolvesParam, res) => {
   try {
     const result = await getAvergaeOf(req.params.num);
     res.status(201).json(result);
@@ -48,7 +49,7 @@ app.get("/bestSolve", async (req, res) => {
   }
 });
 
-app.get("/solves:num", async (req: ParamedRequest, res) => {
+app.get("/solves:num", async (req: GetSolvesParam, res) => {
   try {
     const result = await getSolves(req.params.num);
     res.status(201).json(result);
@@ -71,6 +72,16 @@ app.get("/allHistory", async (req, res) => {
 app.get("/lastHistory", async (req, res) => {
   try {
     const result = await getLastHistoryRecord();
+    res.status(201).json(result);
+  } catch (err: any) {
+    res.status(500).json({ error: err.message });
+    console.error(err.message);
+  }
+});
+
+app.delete("/deleteSolve:solve_id", async (req: DeleteSolveParam, res) => {
+  try {
+    const result = await deleteSolve(req.params.solve_id);
     res.status(201).json(result);
   } catch (err: any) {
     res.status(500).json({ error: err.message });

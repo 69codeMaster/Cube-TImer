@@ -10,3 +10,11 @@ export const formatTime = (average) => {
   if (typeof average === "string") return average;
   return (average / 100).toFixed(2);
 };
+
+export const formatHistoryRow = ({ solve_id, time, ao5 }) => {
+  return {
+    solve_id: "#" + solve_id,
+    time: formatTime(time),
+    ao5: formatTime(ao5),
+  };
+};

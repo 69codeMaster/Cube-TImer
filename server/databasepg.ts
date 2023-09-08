@@ -81,3 +81,12 @@ export async function getLastHistoryRecord(): Promise<
 
   return result.rows[0];
 }
+
+export async function deleteSolve(solve_id: number) {
+  const query = `DELTE FROM main_schema.solves 
+                  WHERE solve_id = $1;`;
+  const values = [solve_id];
+  const result = await pool.query(query);
+
+  return result;
+}
