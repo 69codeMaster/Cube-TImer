@@ -13,6 +13,7 @@ export interface SolveRecord {
   date: Date;
   solve_id: number;
 }
-export interface HistoryRecord extends SolveRecord {
-  averae: number;
+export interface HistoryRecord extends Omit<SolveRecord, "date"> {
+  ao5: number;
+  ao12: number;
 }

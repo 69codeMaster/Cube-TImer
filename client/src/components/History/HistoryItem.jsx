@@ -11,7 +11,7 @@ export default function HistoryItem({ rule, onClick, ...rest }) {
     ));
 
   const onIconClick = async () => {
-    if (DelteSolveAlert) onClick();
+    if (DelteSolveAlert()) onClick();
   };
   return (
     <div key={Math.random()} className="wrapper">

@@ -18,14 +18,15 @@ export async function addSolveToDB({ scramble, time }: SolveProps) {
 }
 
 export async function getSolves(numberOfSolves: number = 15) {
-  const query = ` SELECT time
+  const query = ` SELECT solve_id, time
                   FROM main_schema.solves
                   ORDER BY solve_id DESC  
                   LIMIT $1`;
 
   const values = [numberOfSolves];
 
-  const result: QueryResult<{ time: number }> = await pool.query(query, values);
+  const result: QueryResult<{ time: number; solve_id: number }> =
+    await pool.query(query, values);
 
   return result.rows;
 }

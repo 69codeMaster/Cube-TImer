@@ -81,4 +81,14 @@ app.get("/lastHistory", (req, res) => __awaiter(void 0, void 0, void 0, function
         console.error(err.message);
     }
 }));
+app.delete("/deleteSolve:solve_id", (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const result = yield (0, databasepg_js_1.deleteSolve)(req.params.solve_id);
+        res.status(201).json(result);
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+        console.error(err.message);
+    }
+}));
 app.listen(5000, () => console.log("server strated at port 5000"));

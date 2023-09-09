@@ -18,7 +18,9 @@ export default function HistoryList() {
             return (
               <HistoryItem
                 rule="item"
-                onClick={() => {}}
+                onClick={() => {
+                  
+                }}
                 {...formattedRowData}
               />
             );

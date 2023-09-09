@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getLastHistoryRecord = exports.getAllHistory = exports.getAvergaeOf = exports.getBestSolve = exports.getSolves = exports.addSolveToDB = void 0;
+exports.deleteSolve = exports.getLastHistoryRecord = exports.getAllHistory = exports.getAvergaeOf = exports.getBestSolve = exports.getSolves = exports.addSolveToDB = void 0;
 const pg_1 = __importDefault(require("pg"));
 const { Pool } = pg_1.default;
 const pool = new Pool({
@@ -32,7 +32,7 @@ function addSolveToDB({ scramble, time }) {
 exports.addSolveToDB = addSolveToDB;
 function getSolves(numberOfSolves = 15) {
     return __awaiter(this, void 0, void 0, function* () {
-        const query = ` SELECT time
+        const query = ` SELECT solve_id, time
                   FROM main_schema.solves
                   ORDER BY solve_id DESC  
                   LIMIT $1`;
@@ -91,3 +91,13 @@ function getLastHistoryRecord() {
     });
 }
 exports.getLastHistoryRecord = getLastHistoryRecord;
+function deleteSolve(solve_id) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const query = `DELTE FROM main_schema.solves 
+                  WHERE solve_id = $1;`;
+        const values = [solve_id];
+        const result = yield pool.query(query);
+        return result;
+    });
+}
+exports.deleteSolve = deleteSolve;
