@@ -19,7 +19,12 @@ export default function HistoryList() {
               <HistoryItem
                 rule="item"
                 onClick={() => {
-                  
+                  deleteSolve(item.solve_id);
+                  setSolves((prevSolves) =>
+                    prevSolves.filter(
+                      (solve) => solve.solve_id !== item.solve_id
+                    )
+                  );
                 }}
                 {...formattedRowData}
               />

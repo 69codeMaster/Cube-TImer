@@ -84,10 +84,10 @@ export async function getLastHistoryRecord(): Promise<
 }
 
 export async function deleteSolve(solve_id: number) {
-  const query = `DELTE FROM main_schema.solves 
+  const query = `DELETE FROM main_schema.solves 
                   WHERE solve_id = $1;`;
   const values = [solve_id];
-  const result = await pool.query(query);
+  const result = await pool.query(query, values);
 
   return result;
 }

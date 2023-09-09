@@ -57,18 +57,15 @@ function DbProvider({ children }) {
         // fetchBest().then((res) => setBest(res));
     }, []);
     (0, react_1.useEffect)(() => {
-        console.log("solves rerndered");
-        console.log("");
-        if (history.length && history[0].solve_id !== solves[0].solve_id)
-            (0, apiUtils_1.fetchLastHistoryRecord)().then((lastHistoryRecord) => {
-                setHistory((preHistory) => [lastHistoryRecord, ...preHistory]);
-                setAverages(() => {
-                    return {
-                        ao12: lastHistoryRecord.ao5,
-                        ao5: lastHistoryRecord.ao12,
-                    };
-                });
+        (0, apiUtils_1.fetchAllHistoryRecords)().then((res) => {
+            setHistory(res);
+            setAverages(() => {
+                return {
+                    ao12: res[0].ao12,
+                    ao5: res[0].ao5,
+                };
             });
+        });
     }, [solves]);
     const initlaValue = {
         solves: solves,

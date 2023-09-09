@@ -11,8 +11,10 @@ export default function HistoryItem({ rule, onClick, ...rest }) {
     ));
 
   const onIconClick = async () => {
-    if (DelteSolveAlert()) onClick();
+    const isConfirmed = await DelteSolveAlert();
+    if (isConfirmed) onClick();
   };
+
   return (
     <div key={Math.random()} className="wrapper">
       <div className={`item ${rule}`}>{renderColumn()}</div>

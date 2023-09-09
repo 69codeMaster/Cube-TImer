@@ -93,10 +93,10 @@ function getLastHistoryRecord() {
 exports.getLastHistoryRecord = getLastHistoryRecord;
 function deleteSolve(solve_id) {
     return __awaiter(this, void 0, void 0, function* () {
-        const query = `DELTE FROM main_schema.solves 
+        const query = `DELETE FROM main_schema.solves 
                   WHERE solve_id = $1;`;
         const values = [solve_id];
-        const result = yield pool.query(query);
+        const result = yield pool.query(query, values);
         return result;
     });
 }
